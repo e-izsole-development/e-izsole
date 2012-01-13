@@ -24,20 +24,17 @@
         <button style="float:right;">lang</button>
         <button style="float:right;">curr</button>
 	</div>
-    <span id="testzone" style="width:400px; background:white; margin:20% 20%; height:100%;" >
+    
         
-	<div id="Menu" style="display: block; ">
-		<p>Menu</p>
-                
-	</div>
-	<div id="Kategorijas" style="display: inline; ">
-		<p>kategorijas</p>
-	</div>
-	<div id="Main" style="display: inline; ">
-		<p>main</p>
+	<div id="Kategorijas">
+            <ul>
+                <li>dot at list</li>
+                <li>second item</li>
+                <li>this is SPARTAAAAAA!!!</li>
+                <li>it's over NINE THOUSAAAAAAAAAAND persians</li>
+            </ul>
 	</div>
         
-    </span>
     <div id="comixzone">
             
         <h1>Don't worry it's just a test !!!</h1>
