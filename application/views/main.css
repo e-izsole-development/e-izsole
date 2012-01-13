@@ -1,4 +1,24 @@
-body
+#body
 {
-    background: #666;
+    background: #159;
+}
+#testzone
+{
+    width: 400px;
+    height: 400px; 
+    background: grey;
+    font-family: Arial, Sans-Serif;
+    text-decoration: underline;
+    
+}
+#comixzone
+{
+    width:950px;
+    height: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: dotted;
+    border-width: 4px;
+    background-image: url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");
+    background-position: -300px 0px
 }
