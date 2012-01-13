@@ -5,16 +5,16 @@ class main extends CI_Controller
     function main()
     {
         parent::__construct();
-        if ($_SESSION["eizsoleuser"] == null) $_SESSION["eizsoleuser"] = "nr";
+        $this->load->library('session');
+        if ($this->session->userdata("eizsoleuser") == null) $this->session->set_userdata("eizsoleuser","nr");
         
     }
     
     function index()
     {
         $dati = array();
-        if ($_SESSION["eizsoleuser"] == null) $_SESSION["eizsoleuser"] = "nr";
 
-        if ($_SESSION["eizsoleuser"] != null) $this->load->view('main');
+        if ($this->session->userdata("eizsoleuser") != null) $this->load->view('main');
         else $this->load->view('mainguest');
     }
 }

@@ -18,7 +18,7 @@
                 </button>
                 <p style="display:inline">
                     Registered as :
-                    <?php echo $_SESSION["eizsoleuser"]; ?>
+                    <?php echo $this->session->userdata("eizsoleuser"); ?>
                 </p>
         </span>
         <button style="float:right;">lang</button>
