@@ -11,7 +11,7 @@
                 My home
                 </button>
                 <button>
-                Add product
+                Add product!!!
                 </button>
                 <button>
                 Last seen
