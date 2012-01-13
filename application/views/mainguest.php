@@ -6,15 +6,9 @@
 	
 <body>
     <div id="TopBar" style="display: block; background: grey; ">
-		<button>
-                Mana izvelne
-                </button>
-                <button>
-                Pievienot produktu
-                </button>
-                <button>
-                Pedējie apskatītie
-                </button>
+            <h3>
+                <?php echo "not registered"; ?>
+            </h3>
         <button style="float:right;">lang</button>
         <button style="float:right;">curr</button>
 	</div>
