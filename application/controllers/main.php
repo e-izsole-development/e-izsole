@@ -12,11 +12,60 @@ class main extends CI_Controller
     
     function index()
     {
-        $dati = array();
-
-        if ($this->session->userdata("eizsoleuser") != null) $this->load->view('main');
-        else $this->load->view('mainguest');
+        $data = array();
+        $categories = array();
+        $categories[] = "toys";
+        $categories[] = "jewerly";
+        $categories[] = "cars";
+        $categories[] = "books";
+        $categories[] = "electronics";
+        $data['categories'] = $categories;
+        
+        $items = array();
+        $item = array();
+        $item["pic"] = "none";
+        $item["title"] = "Title";
+        $item["description"] = "It is a small description";
+        $item["price"] = 5;
+        $items[] = $item;
+        $items[] = $item;
+        $items[] = $item;
+        $items[] = $item;
+        $items[] = $item;
+        
+        $data["items"] = $items;
+        
+        if ($this->session->userdata("eizsoleuser") != null) $this->load->view('main',$data);
+        else $this->load->view('mainguest',$data);
     }
+    
+    function item($id)
+    {
+        $data = array();
+        $categories = array();
+        $categories[] = "toys";
+        $categories[] = "jewerly";
+        $categories[] = "cars";
+        $categories[] = "books";
+        $categories[] = "electronics";
+        $data['categories'] = $categories;
+        
+        $items = array();
+        $item = array();
+        $item["pic"] = "none";
+        $item["title"] = "Title";
+        $item["description"] = "It is a small description";
+        $item["price"] = 5;
+        $items[] = $item;
+        $items[] = $item;
+        $items[] = $item;
+        $items[] = $item;
+        $items[] = $item;
+        
+        $data["items"] = $items;
+        $this->load->view('item',$data);
+    }
+    
 }
 
 ?>
