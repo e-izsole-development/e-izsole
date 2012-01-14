@@ -1,6 +1,10 @@
-#body
+#whole_page
 {
-    background: #159;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    background-image: url('images/gradient.png');
+    
 }
 #Kategorijas
 {
@@ -9,6 +13,7 @@
     width: 200px;
     margin-top: 150px;
     background-color: #9999ff;
+    
 }
 
 #comixzone
@@ -22,5 +27,5 @@
     border-width: 4px;
     border-color: lightgray;
     background-image: url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");
-    background-position: -350px 0px;
+    background-position: -350px -10px;
 }

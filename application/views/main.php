@@ -5,6 +5,7 @@
 	<title>e-izsole</title>
         <LINK REL=StyleSheet HREF="application/views/main.css" TYPE="text/css"></link>
 <body>
+    <div id="whole_page">
     <div id="TopBar" style="display: block; background: grey; ">
         <span id="forRegisteredUser">
 		<button>
@@ -47,5 +48,6 @@
         third line of pre</pre>
             
         </div>
+    </div>
 </body>
 </html>
