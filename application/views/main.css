@@ -3,7 +3,7 @@
     margin: 0px;
     padding: 0px;
     border: none;
-    background-image: url('images/gradient.png');
+    background-image : url(../../images/gradient.png);
     
 }
 #Kategorijas
@@ -28,4 +28,22 @@
     border-color: lightgray;
     background-image: url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");
     background-position: -350px -10px;
+}
+
+.item img
+{
+    display: inline;
+    float: left;
+}
+
+.item h3
+{
+    width: 50%;
+}
+
+.item h4
+{
+    width: 50%;
+    display: inline;
+    float: left;
 }
