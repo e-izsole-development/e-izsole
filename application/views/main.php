@@ -54,9 +54,9 @@
                 width="50"
                 />
         <h3><?php echo $item["title"] ?></h3>
+        <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
         <h4><?php echo $item["description"] ?></h4>
         <p><?php echo $item["price"]; ?> Eur  </p>
-        <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
         <button>apskatīt</button>
         </div>
         <?php endforeach;?>
