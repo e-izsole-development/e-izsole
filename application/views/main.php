@@ -50,8 +50,6 @@
         <div class="item">
             <img 
                 src="<?php if ($item['pic']=='none') echo 'images/nope.jpg'; else echo $item['pic']; ?>" 
-                height="50" 
-                width="50"
                 />
         <h3><?php echo $item["title"] ?></h3>
         <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
