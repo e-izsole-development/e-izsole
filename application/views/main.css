@@ -5,6 +5,10 @@ body
  height: 100%;
 }
 
+#LoginDiv{
+     float: right;
+}
+
 #top_bar 
 {
     display: block;

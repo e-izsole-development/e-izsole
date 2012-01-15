@@ -44,6 +44,16 @@
             </ul>
 	</div>
         
+   <?php if (TRUE){ ?>
+    <div id="LoginDiv">
+        <form id="LogInToSystem">
+            <p>Login: <input name="login" id="login" type="text"/></p>
+            <p>Pasword: <input name="pasword" id="pasword" type="text"/></p>
+            <input type="submit" value="Login">
+        </form>
+    </div> 
+   <?php } ?>
+        
     <div id="comixzone">
         
         <?php foreach ($items as $item): ?>
