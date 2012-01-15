@@ -64,3 +64,11 @@ INSERT INTO dbo_parameter_values (`id`,`parameter`,`value`,`item_id`,`language`)
 (20,3,'Yes',5,2),
 (21,4,'Yes',5,2),
 (22,5,'black',5,2);
+
+
+INSERT INTO dbo_item_description(`id`,`description`,`short_description`) VALUES
+(1,'Its a fucking amazing book about alien mashiens on three feet!!!','Great fantastic book'),
+(2,'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah book about blah blah blah blah blah.','boooooook'),
+(3,'Brilliant tale for young children','Tale'),
+(4,'phone without colors','Unbrokable'),
+(5,'unfortunately broken','phone with colors))');

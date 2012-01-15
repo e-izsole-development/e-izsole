@@ -40,22 +40,24 @@
 	<div id="Kategorijas">
             <ul>
                 <?php foreach ($categories as $cat): ?>
-                <li><a href="#"><?php echo $cat ?></a></li>
+                <li><a href="#"><?php echo $cat->title ?></a></li>
                 <?php endforeach;?>
             </ul>
 	</div>
         
     <div id="comixzone">
+        
         <?php foreach ($items as $item): ?>
         <div class="item">
             <img 
-                src="<?php if ($item['pic']=='none') echo 'images/nope.jpg'; else echo $item['pic']; ?>" 
+                src="<?php if ($item->photo==null) echo 'images/nope.jpg'; else echo $item->photo; ?>" 
                 />
-        <h3><?php echo $item["title"] ?></h3>
-        <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
-        <h4><?php echo $item["description"] ?></h4>
-        <p><?php echo $item["price"]; ?> Eur  </p>
-        <button>apskatīt</button>
+            <div class="description">
+                <h3><?php echo $item->title ?></h3>
+                <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
+                <h4><?php echo $item->description ?></h4>
+                <p><?php echo $item->price; ?> Eur  </p>
+            </div>
         </div>
         <?php endforeach;?>
         </div>
