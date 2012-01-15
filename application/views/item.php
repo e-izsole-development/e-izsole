@@ -4,11 +4,13 @@
 	<meta charset="utf-8">
 	<title>e-izsole</title>
         <LINK REL=StyleSheet HREF="application/views/main.css" TYPE="text/css"></link>
+        <LINK REL=StyleSheet HREF="application/views/main.css" TYPE="text/css"/>
 <body>
     
 
     <div id="whole_page">
     <div id="TopBar" style="display: block; background: grey; ">
+        <div id="forRegisteredUser">
         <span id="forRegisteredUser">
 		<button>
                 My home
