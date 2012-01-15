@@ -1,16 +1,16 @@
 body
 {
  margin: 0px;
- padding: 0px;
+    padding: 0px;
+    border: none;
+    background-image : url(images/gradient.png);
+    width: auto;
 }
 
 
-#whole_page
+#topbar
 {
-    margin: 0px;
-    padding: 0px;
-    border: none;
-    background-image : url(../../images/gradient.png);
+    width: auto;
     
 }
 #Kategorijas
