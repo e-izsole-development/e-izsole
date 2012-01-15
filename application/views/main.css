@@ -5,13 +5,32 @@ body
  height: 100%;
 }
 
+#top_bar 
+{
+    display: block;
+    background: grey; 
+    height: auto;
+}
+
+#top_bar div
+{
+    width:49%;
+    display:inline;
+
+}
+
+#top_username
+{
+    margin:0px;
+    width:50%;
+}
 
 #whole_page
 {
     margin: 0px;
     padding: 0px;
     border: none;
-    background-image : url(../../images/gradient.png);
+    background-image : url(images/gradient.png);
     height: 100%;    
 }
 #Kategorijas
@@ -19,7 +38,9 @@ body
     display: inline;
     float: left;
     width: 200px;
-    margin-top: 150px;
+    margin:0px;
+    padding:0px;
+    margin-top: 30px;
     background-color: #9999ff;
     
 }
