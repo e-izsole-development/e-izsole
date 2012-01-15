@@ -64,7 +64,7 @@
                 src="<?php if ($item->photo==null) echo 'images/nope.jpg'; else echo $item->photo; ?>" 
                 />
             <div class="description">
-                <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>
+                <h3><?php echo anchor('index.php/main/item/' . $item->id, $item->title);?></h3>
                 <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
                 <h4><?php echo $item->description ?></h4>
                 <p><?php echo $item->price; ?> Eur  </p>
