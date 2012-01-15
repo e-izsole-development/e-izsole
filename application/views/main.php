@@ -46,7 +46,7 @@
         
    <?php if (TRUE){ ?>
     <div id="LoginDiv">
-        <form id="LogInToSystem">
+        <form method="post" accept-charset="utf-8" action="login" id="LogInToSystem">
             <p>Login:</p>
             <p><input name="login" id="login" type="text"/></p>
             <p>Pasword:</p>
