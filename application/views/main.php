@@ -16,8 +16,8 @@
 
 
     <div id="whole_page">
-    <div id="TopBar">
-        <div id="forRegisteredUser">
+    <div id="top_bar">
+        <div id="top_bar_left">
 		<button>
                 My home
                 </button>
@@ -27,13 +27,12 @@
                 <button>
                 Last seen
                 </button>
-                <p>
-                    Registered as :
-                    <?php echo $this->session->userdata("eizsoleuser"); ?>
-                </p>
+                <p id="top_username">Registered as : <?php echo $this->session->userdata("eizsoleuser"); ?></p>
         </div>
+        <div id="top_bar_right">
         <button>lang</button>
         <button>curr</button>
+        </div>
 	</div>
     
         
