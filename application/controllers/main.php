@@ -14,6 +14,7 @@ class main extends CI_Controller
     {
         $this->load->model('items_data');
         $this->load->model('system_data');
+        $this->load->helper('url');
         
         $data = array();
         $data["categories"] = $this->system_data->getCategories();

@@ -19,7 +19,7 @@ class items_data extends CI_Model
     
     function getAllShortInfo()
     {
-        $this->db->select(" i.title, i.photo, i.auction, i.price, d.description, d.short_description FROM dbo_items i, dbo_item_description d WHERE i.id=d.id"); 
+        $this->db->select("i.id, i.title, i.photo, i.auction, i.price, d.description, d.short_description FROM dbo_items i, dbo_item_description d WHERE i.id=d.id"); 
         return $this->db->get()->result();
     }
     
