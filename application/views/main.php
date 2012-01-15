@@ -46,11 +46,11 @@
         
    <?php if (TRUE){ ?>
     <div id="LoginDiv">
-        <form id="LogInToSystem">
+        <form id="LogInToSystem" action="main/login">
             <p>Login:</p>
             <p><input name="login" id="login" type="text"/></p>
             <p>Pasword:</p>
-            <p><input name="pasword" id="pasword" type="text"/></p>
+            <p><input name="password" id="password" type="password"/></p>
             <p><input type="submit" value="Login"></p>
         </form>
     </div> 

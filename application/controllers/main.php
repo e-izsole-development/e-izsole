@@ -27,6 +27,14 @@ class main extends CI_Controller
         else $this->load->view('mainguest',$data);
     }
     
+    function login()
+    {
+        $this->load->model('user_data');
+        var_dump($this->input->post("login"));
+        $id = $this->user_data->getUserId($this->input->post("login"),$this->input->post("login"));
+    }
+    
+    
     function item($id)
     {
         $this->load->model('items_data');
