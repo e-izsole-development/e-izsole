@@ -18,8 +18,6 @@
     <div id="whole_page">
     <div id="TopBar">
         <div id="forRegisteredUser">
-    <div id="TopBar" style="display: block; background: grey; ">
-        <span id="forRegisteredUser">
 		<button>
                 My home
                 </button>
@@ -29,13 +27,13 @@
                 <button>
                 Last seen
                 </button>
-                <p style="display:inline">
+                <p>
                     Registered as :
                     <?php echo $this->session->userdata("eizsoleuser"); ?>
                 </p>
-        </span>
-        <button style="float:right;">lang</button>
-        <button style="float:right;">curr</button>
+        </div>
+        <button>lang</button>
+        <button>curr</button>
 	</div>
     
         
