@@ -9,6 +9,7 @@ body
 
 #LoginDiv{
      float: right;
+     background-color: coral;
 }
 
 #top_bar 
@@ -46,7 +47,7 @@ body
 
 #comixzone
 {
-    width: 100% -200px;
+    width: 100%;
     height: 100%;
     margin-top: 0;
     margin-left: 200px;
