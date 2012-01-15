@@ -16,6 +16,8 @@
 
 
     <div id="whole_page">
+    <div id="TopBar">
+        <div id="forRegisteredUser">
     <div id="TopBar" style="display: block; background: grey; ">
         <span id="forRegisteredUser">
 		<button>

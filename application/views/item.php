@@ -23,6 +23,7 @@
                     Registered as :
                     <?php echo $this->session->userdata("eizsoleuser"); ?>
                 </p>
+        </div>
         </span>
         <button style="float:right;">lang</button>
         <button style="float:right;">curr</button>
