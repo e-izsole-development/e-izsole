@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>e-izsole</title>
-        <LINK REL=StyleSheet HREF="../../application/views/main.css" TYPE="text/css"></link>
+        <LINK REL=StyleSheet HREF="../../application/views/main.css" TYPE="text/css"/>
 <body>
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -17,7 +17,7 @@
 
     <div id="whole_page">
     <div id="TopBar" style="display: block; background: grey; ">
-        <span id="forRegisteredUser">
+        <div id="forRegisteredUser">
 		<button>
                 My home
                 </button>
@@ -31,7 +31,7 @@
                     Registered as :
                     <?php echo $this->session->userdata("eizsoleuser"); ?>
                 </p>
-        </span>
+        </div>
         <button style="float:right;">lang</button>
         <button style="float:right;">curr</button>
 	</div>
@@ -69,6 +69,7 @@
             <?php endforeach; ?>
             </table>
         </div>
+    </div>
     </div>
 </body>
 </html>
