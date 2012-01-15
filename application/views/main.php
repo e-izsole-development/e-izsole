@@ -47,9 +47,11 @@
    <?php if (TRUE){ ?>
     <div id="LoginDiv">
         <form id="LogInToSystem">
-            <p>Login: <input name="login" id="login" type="text"/></p>
-            <p>Pasword: <input name="pasword" id="pasword" type="text"/></p>
-            <input type="submit" value="Login">
+            <p>Login:</p>
+            <p><input name="login" id="login" type="text"/></p>
+            <p>Pasword:</p>
+            <p><input name="pasword" id="pasword" type="text"/></p>
+            <p><input type="submit" value="Login"></p>
         </form>
     </div> 
    <?php } ?>
