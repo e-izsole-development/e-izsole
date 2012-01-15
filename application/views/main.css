@@ -1,8 +1,10 @@
 body
 {
  margin: 0px;
- padding: 0px;
- height: 100%;
+    padding: 0px;
+    border: none;
+    background-image : url(images/gradient.png);
+    height: 100%;    
 }
 
 #LoginDiv{
@@ -29,14 +31,7 @@ body
     width:50%;
 }
 
-#whole_page
-{
-    margin: 0px;
-    padding: 0px;
-    border: none;
-    background-image : url(images/gradient.png);
-    height: 100%;    
-}
+
 #Kategorijas
 {
     display: inline;
