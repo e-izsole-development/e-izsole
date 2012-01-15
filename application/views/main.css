@@ -2,6 +2,7 @@ body
 {
  margin: 0px;
  padding: 0px;
+ height: 100%;
 }
 
 
@@ -11,7 +12,7 @@ body
     padding: 0px;
     border: none;
     background-image : url(../../images/gradient.png);
-    
+    height: 100%;    
 }
 #Kategorijas
 {
@@ -25,10 +26,10 @@ body
 
 #comixzone
 {
-    width: 100%;
+    width: 100% - 200px;
     height: 100%;
     margin-top: 0;
-    margin-left: 10%;
+    margin-left: 200px;
     margin-right: auto;
     border-style: dotted;
     border-width: 4px;
@@ -48,11 +49,26 @@ body
     width: 50%;
     display: inline;
     float: left;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .item h4
 {
-    width: 50%;
+    width: 55%;
     display: inline;
     float: left;
+}
+
+.item fb-like
+{
+    display: block;
+}
+
+.item .description
+{
+    overflow: auto;
+    display:block;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
