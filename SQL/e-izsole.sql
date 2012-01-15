@@ -57,6 +57,13 @@ CREATE TABLE IF NOT EXISTS `dbo_items` (
 	PRIMARY KEY (`id`)
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=3 ;
 
+CREATE TABLE IF NOT EXISTS `dbo_item_description` (
+	`id` INT NOT NULL,
+	`description` TEXT,
+	`short_description` varchar(255),
+	PRIMARY KEY (`id`)
+)ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=3 ;
+
 CREATE TABLE IF NOT EXISTS `dbo_mobile_operators` (
 	`id` INT AUTO_INCREMENT NOT NULL,
 	`title` VARCHAR(64) NOT NULL,
@@ -104,13 +111,6 @@ CREATE TABLE IF NOT EXISTS `dbo_user_items` (
 CREATE TABLE IF NOT EXISTS `dbo_languages` (
 	`id` INT AUTO_INCREMENT NOT NULL,
 	`title` VARCHAR(127) NOT NULL,
-	PRIMARY KEY (`id`)
-)ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=3 ;
-
-CREATE TABLE IF NOT EXISTS `dbo_item_description` (
-	`id` INT AUTO_INCREMENT NOT NULL,
-	`user` INT NOT NULL,
-	`item` INT NOT NULL,
 	PRIMARY KEY (`id`)
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=3 ;
 

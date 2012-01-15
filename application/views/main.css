@@ -1,39 +1,65 @@
 body
 {
  margin: 0px;
+ padding: 0px;
+ height: 100%;
+}
+
+#LoginDiv{
+     float: right;
+}
+
+#top_bar 
+{
+    display: block;
+    background: grey; 
+    height: auto;
+}
+
+#top_bar div
+{
+    width:49%;
+    display:inline;
+
+}
+
+#top_username
+{
+    margin:0px;
+    width:50%;
+}
+
+#whole_page
+{
+    margin: 0px;
     padding: 0px;
     border: none;
     background-image : url(images/gradient.png);
-    width: auto;
-}
-
-
-#topbar
-{
-    width: auto;
-    
+    height: 100%;    
 }
 #Kategorijas
 {
     display: inline;
     float: left;
     width: 200px;
-    margin-top: 150px;
+    margin:0px;
+    padding:0px;
+    margin-top: 30px;
     background-color: #9999ff;
     
 }
 
 #comixzone
 {
-    width: 900px;
-    height: 1000px;
-    margin-top: 30px;
-    margin-left: 230px;
+    width: 100% -200px;
+    height: 100%;
+    margin-top: 0;
+    margin-left: 200px;
     margin-right: auto;
     border-style: dotted;
     border-width: 4px;
     border-color: lightgray;
-    background-image: url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");
+    background-image:  url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");
     background-position: -350px -10px;
 }
 
@@ -46,11 +72,28 @@ body
 .item h3
 {
     width: 50%;
+    display: inline;
+    float: left;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .item h4
 {
-    width: 50%;
+    width: 55%;
     display: inline;
     float: left;
+}
+
+.item fb-like
+{
+    display: block;
+}
+
+.item .description
+{
+    overflow: auto;
+    display:block;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

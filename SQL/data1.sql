@@ -42,18 +42,18 @@ INSERT INTO dbo_items (`id`,`seller_id`,`title`,`Auction`,`price`,`category`,`wi
 (5,5,'Nokia 5800',1,10,2,0);
 
 INSERT INTO dbo_parameter_values (`id`,`parameter`,`value`,`item_id`,`language`) VALUES
-(1,1,'Herbert Wells',1,2),
-(2,2,'War of the worlds',1,2),
-(3,3,'500',1,2),
-(4,4,'yes',1,2),
-(5,1,'Unknown',2,2),
-(6,2,'Roses are red, Violets are blue',2,2),
-(7,3,'200',2,2),
-(8,4,'No',2,2),
-(9,1,'People',3,2),
-(10,2,'Story about 3 pigs',3,2),
-(11,3,'10',3,2),
-(12,4,'No',3,2),
+(1,6,'Herbert Wells',1,2),
+(2,7,'War of the worlds',1,2),
+(3,8,'500',1,2),
+(4,9,'yes',1,2),
+(5,6,'Unknown',2,2),
+(6,7,'Roses are red, Violets are blue',2,2),
+(7,8,'200',2,2),
+(8,9,'No',2,2),
+(9,6,'People',3,2),
+(10,7,'Story about 3 pigs',3,2),
+(11,8,'10',3,2),
+(12,9,'No',3,2),
 (13,1,'Nokia 3310',4,2),
 (14,2,'150g',4,2),
 (15,3,'No',4,2),
@@ -64,3 +64,11 @@ INSERT INTO dbo_parameter_values (`id`,`parameter`,`value`,`item_id`,`language`)
 (20,3,'Yes',5,2),
 (21,4,'Yes',5,2),
 (22,5,'black',5,2);
+
+
+INSERT INTO dbo_item_description(`id`,`description`,`short_description`) VALUES
+(1,'Its a fucking amazing book about alien mashiens on three feet!!!','Great fantastic book'),
+(2,'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah book about blah blah blah blah blah.','boooooook'),
+(3,'Brilliant tale for young children','Tale'),
+(4,'phone without colors','Unbrokable'),
+(5,'unfortunately broken','phone with colors))');
