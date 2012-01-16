@@ -57,7 +57,9 @@ class main extends CI_Controller
     }
    
     function myProductForSail(){
-        
+        $this->load->model('reports');
+        $data=$this->reports->findNotSeldProductByUserID($this->session->userdata('eizsoleuser'));
+        $this->load->view('reports',$data);
     }
     
     function lastTenViewed(){

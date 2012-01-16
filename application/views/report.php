@@ -3,7 +3,7 @@
 <head>
         <meta charset="utf-8"/>
 	<title>Reports</title>
-        <link REL=StyleSheet HREF="application/views/main.css"/>
+        <link REL=StyleSheet HREF="/e-izsole-development/application/views/main.css"/>
 </head>
 <body>
     <div id="whole_page">
