@@ -52,13 +52,16 @@
             <p><input name="login" id="login" type="text"/></p>
             <p>Pasword:</p>
             <p><input name="password" id="password" type="password"/></p>
-            <p><input type="submit" value="Submit"> </p>
+            <p><input type="submit" value="Submit"/> </p>
         </form>
     </div> 
    <?php } ?>
         
     <div id="comixzone">
-        
+        <?php echo form_open('main/search');?>
+        <input name="parameters" id="searchinput" type="text"/>
+        <input value="Find" type="submit"/>
+        </form>
         <?php foreach ($items as $item): ?>
         <div class="item">
             <img 
