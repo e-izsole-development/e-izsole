@@ -64,7 +64,7 @@
             <p><input name="login" id="login" type="text"/></p>
             <p>Pasword:</p>
             <p><input name="password" id="password" type="password"/></p>
-            <p><input type="submit" value="Submit"> </p>
+            <p><input type="submit" value="Login"> </p>
         </form>
     </div> 
    <?php } ?>
