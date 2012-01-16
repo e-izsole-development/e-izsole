@@ -27,6 +27,9 @@
                 <button>
                 Last seen
                 </button>
+                <form accept-charset="utf-8" method="post" action="/index.php/main/myProductForSail">
+                    <input type="submit" value="Report"> 
+                 </form>
                 <p id="top_username">Registered as : <?php echo $this->session->userdata("eizsoleuser"); ?></p>
         </div>
         <div id="top_bar_right">
