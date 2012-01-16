@@ -7,6 +7,7 @@ class main extends CI_Controller
         parent::__construct();
         $this->load->library('session');
         if ($this->session->userdata("eizsoleuser") == null) $this->session->set_userdata("eizsoleuser","nr");
+        $this->load->helper('form');
         
     }
     
@@ -22,16 +23,17 @@ class main extends CI_Controller
         
         
         $data["items"] = $this->items_data->getAllShortInfo();
-        
-        if ($this->session->userdata("eizsoleuser") != null) $this->load->view('main',$data);
-        else $this->load->view('mainguest',$data);
+        $data["username"] = "asd";
+        $this->load->view('main',$data);
     }
     
     function login()
     {
         $this->load->model('user_data');
-        var_dump($this->input->post("login"));
-        $id = $this->user_data->getUserId($this->input->post("login"),$this->input->post("login"));
+        var_dump($_POST);
+        $id = $this->user_data->getUserId($_POST["login"],$_POST["password"]);
+        $this->session->set_userdata("eizsoleuser",$id);
+        $this->index();
     }
     
     

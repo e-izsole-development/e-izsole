@@ -46,12 +46,12 @@
         
    <?php if (TRUE){ ?>
     <div id="LoginDiv">
-        <form id="LogInToSystem" action="main/login">
+        <form accept-charset="utf-8" method="post" action="main/login">
             <p>Login:</p>
             <p><input name="login" id="login" type="text"/></p>
             <p>Pasword:</p>
             <p><input name="password" id="password" type="password"/></p>
-            <p><input type="submit" value="Login"></p>
+            <p><input type="submit" value="Submit"></p>
         </form>
     </div> 
    <?php } ?>
