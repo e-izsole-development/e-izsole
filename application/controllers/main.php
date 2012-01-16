@@ -40,6 +40,13 @@ class main extends CI_Controller
         $this->load->view('item',$data);
     }
    
+    function myProductForSail(){
+        
+    }
+    
+    function lastTenViewed(){
+        
+    }
     
 }
 
