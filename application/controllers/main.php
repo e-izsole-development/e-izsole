@@ -62,6 +62,19 @@ class main extends CI_Controller
         $this->load->view('reports',$data);
     }
     
+    function category($id)
+    {
+        $this->load->model('items_data');
+        $this->load->model('system_data');
+        $this->load->helper('url');
+        
+        $data = array();
+        $data["categories"] = $this->system_data->getCategories();
+        
+        $data["items"] = $this->items_data->getItemsByCategory($id);
+        $this->load->view('main',$data);
+    }
+    
     function lastTenViewed(){
         
     }

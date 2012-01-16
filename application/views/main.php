@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>e-izsole</title>
-        <link REL=StyleSheet HREF="/e-izsole-development/application/views/main.css"/>
+        <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
 <body>
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -50,8 +50,9 @@
         
 	<div id="Kategorijas">
             <ul>
+                <li><a href=<?php echo site_url('main/'); ?> >All</a></li>
                 <?php foreach ($categories as $cat): ?>
-                <li><a href="#"><?php echo $cat->title ?></a></li>
+                <li><a href=<?php echo site_url('main/category/' . $cat->id); ?> ><?php echo $cat->title ?></a></li>
                 <?php endforeach;?>
             </ul>
 	</div>
@@ -73,7 +74,7 @@
         <?php foreach ($items as $item): ?>
         <div class="item">
             <img 
-                src="<?php if ($item->photo==null) echo 'images/nope.jpg'; else echo $item->photo; ?>" 
+                src="<?php if ($item->photo==null) echo base_url('images/nope.jpg'); else echo $item->photo; ?>" 
                 />
             <div class="description">
                 <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>

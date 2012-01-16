@@ -19,7 +19,7 @@ class system_data extends CI_Model
     
     function getCategories()
     {
-        $this->db->select('title');
+        $this->db->select('title,id');
         return $this->db->get('dbo_categories')->result();
     }
 }
