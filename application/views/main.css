@@ -4,7 +4,8 @@ body
     padding: 0px;
     border: none;
     background-image : url(./images/gradient.png);
-    height: 100%;    
+    height: 100%;  
+    width: 100%;
 }
 
 #LoginDiv p
@@ -15,7 +16,7 @@ body
 }
 
 #LoginDiv{
-    margin-left: 0 px;
+    margin-left: 0px;
     padding: 20px;
     padding-top: 10px;
      float: right;
@@ -24,16 +25,59 @@ body
 
 #top_bar 
 {
+    width: 100%;
     display: block;
     background: grey; 
     height: auto;
 }
 
-#top_bar div
+#top_bar_left
 {
+    float: left;
+    display: inline;
+    width: 49%;
+}
+#top_bar_left ul
+{
+    list-style: none;
+}
+#top_bar_left ul li
+{
+    display: inline;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#top_bar_right
+{
+    float: right;
+    text-alignment: right;
     width:49%;
     display:inline;
 
+}
+#top_bar_right
+{
+    width: 49%;
+}
+#top_bar_right ul
+{
+    padding-right: 20px;
+    float: right;
+    list-style: none;
+}
+#top_bar_right ul li
+{
+    display: inline;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#top_username
+{
+    background-color: bisque;
+}
+#clear
+{
+    clear: both;
 }
 
 #top_username

@@ -18,20 +18,32 @@
     <div id="whole_page">
     <div id="top_bar">
         <div id="top_bar_left">
-		<button>
+            <ul>
+		<li>
                 My home
-                </button>
-                <button>
+                </li>
+                <li>
                 Add product
-                </button>
-                <button>
+                </li>
+                <li>
                 Last seen
-                </button>
-            <p id="top_username">Registered as : <?php echo $this->session->userdata("eizsoleusername"); echo anchor('main/logout','   logout');?> </p>
+                </li>
+            <?php if ($this->session->userdata("eizsoleuser")!=null) { 
+            echo ("<li id=\"top_username\">Logged in as : "); 
+                echo $this->session->userdata("eizsoleusername"); 
+                echo anchor('main/logout','   logout'); 
+                echo ("</li>");
+             } ?>
+                </ul>
         </div>
         <div id="top_bar_right">
-        <button>lang</button>
-        <button>curr</button>
+            <ul>
+            <li>lang</li>
+            <li>curr</li>
+            </ul>
+        </div>
+        <div id="clear">
+            
         </div>
 	</div>
     
