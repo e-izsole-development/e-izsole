@@ -27,7 +27,7 @@
                 <button>
                 Last seen
                 </button>
-                <p id="top_username">Registered as : <?php echo $this->session->userdata("eizsoleuser"); ?></p>
+            <p id="top_username">Registered as : <?php echo $this->session->userdata("eizsoleusername"); echo anchor('main/logout','   logout');?> </p>
         </div>
         <div id="top_bar_right">
         <button>lang</button>
@@ -44,14 +44,14 @@
             </ul>
 	</div>
         
-   <?php if (TRUE){ ?>
+   <?php if ($this->session->userdata("eizsoleuser")==null){ ?>
     <div id="LoginDiv">
-        <form accept-charset="utf-8" method="post" action="main/login">
+        <?php echo form_open('main/login');?>
             <p>Login:</p>
             <p><input name="login" id="login" type="text"/></p>
             <p>Pasword:</p>
             <p><input name="password" id="password" type="password"/></p>
-            <p><input type="submit" value="Submit"></p>
+            <p><input type="submit" value="Submit"> </p>
         </form>
     </div> 
    <?php } ?>
@@ -64,7 +64,7 @@
                 src="<?php if ($item->photo==null) echo 'images/nope.jpg'; else echo $item->photo; ?>" 
                 />
             <div class="description">
-                <h3><?php echo anchor('index.php/main/item/' . $item->id, $item->title);?></h3>
+                <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>
                 <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
                 <h4><?php echo $item->description ?></h4>
                 <p><?php echo $item->price; ?> Eur  </p>

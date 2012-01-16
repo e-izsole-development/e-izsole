@@ -10,8 +10,11 @@ class User_data extends CI_Model
     function getUserId($login,$pass)
     {
         $this->db->select("id FROM dbo_users WHERE username = '" . $login . "' AND password = '" . $pass . "';");
-        $obj = $this->db->get()->result();        
+        $obj = $this->db->get()->result();     
+        if (empty($obj)) return null;
         return $obj[0]->id;
     }
+    
+    
 }
 ?>

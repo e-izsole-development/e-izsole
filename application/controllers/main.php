@@ -6,7 +6,6 @@ class main extends CI_Controller
     {
         parent::__construct();
         $this->load->library('session');
-        if ($this->session->userdata("eizsoleuser") == null) $this->session->set_userdata("eizsoleuser","nr");
         $this->load->helper('form');
         
     }
@@ -29,13 +28,20 @@ class main extends CI_Controller
     
     function login()
     {
+        
         $this->load->model('user_data');
-        var_dump($_POST);
         $id = $this->user_data->getUserId($_POST["login"],$_POST["password"]);
         $this->session->set_userdata("eizsoleuser",$id);
+        if ($id!=null) $this->session->set_userdata("eizsoleusername",$_POST['login']);
         $this->index();
     }
     
+    function logout()
+    {
+        $this->session->unset_userdata('eizsoleuser');
+        $this->session->unset_userdata('eizsoleusername');
+        $this->index();
+    }
     
     function item($id)
     {
