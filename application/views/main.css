@@ -3,7 +3,7 @@ body
  margin: 0px;
     padding: 0px;
     border: none;
-    background-image : url(images/gradient.png);
+    background-image : url(./images/gradient.png);
     height: 100%;    
 }
 

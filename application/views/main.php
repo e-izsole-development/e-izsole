@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>e-izsole</title>
-        <link REL=StyleSheet HREF="application/views/main.css"/>
+        <link REL=StyleSheet HREF="/e-izsole-development/application/views/main.css"/>
 <body>
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
