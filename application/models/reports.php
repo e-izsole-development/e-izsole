@@ -13,6 +13,9 @@ class items_data extends CI_Model
     }
     
     function findNotSeldProductByUserID($userID){
+        $this->db->from('dbo_user_items');
+        $this->db->where('user', $userID);
+        $query = $this->db->get();
         
     }
 }
