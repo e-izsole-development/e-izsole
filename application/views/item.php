@@ -39,19 +39,21 @@
         
 	<div id="Kategorijas">
             <ul>
+                <li><a href=<?php echo site_url('main/'); ?> >All</a></li>
                 <?php foreach ($categories as $cat): ?>
-                <li><a href="#"><?php echo $cat->title ?></a></li>
+                <li><a href=<?php echo site_url('main/category/' . $cat->id); ?> ><?php echo $cat->title ?></a></li>
                 <?php endforeach;?>
             </ul>
 	</div>
         
     <div id="comixzone">
         
-        <h1><?php echo $item->title ?></h1>
+        
         <div id="leftzone">
             <img 
-                src="<?php if ($item->photo==null) echo 'images/nope.jpg'; else echo $item->photo; ?>" 
+                src="<?php if ($item->photo==null) echo base_url('images/nope.jpg'); else echo $item->photo; ?>" 
                 />
+            <h1><?php echo $item->title ?></h1>
             <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
         </div>
         <div id="rightzone">

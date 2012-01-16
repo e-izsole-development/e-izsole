@@ -33,6 +33,12 @@ class items_data extends CI_Model
         $data->parameters = $params;
         return $data;
     }
+    
+    function getItemsByCategory($cat)
+    {
+        $this->db->select("i.id, i.title, i.photo, i.auction, i.price, d.description, d.short_description FROM dbo_items i, dbo_item_description d WHERE (i.id=d.id) AND (i.category='" . $cat ."');"); 
+        return $this->db->get()->result();
+    }
 }
 
 ?>
