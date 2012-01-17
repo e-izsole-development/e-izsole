@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>e-izsole</title>
+	<title>E-izsole</title>
         <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
 <body>
     <div id="fb-root"></div>
@@ -65,6 +65,8 @@
             <p>Pasword:</p>
             <p><input name="password" id="password" type="password"/></p>
             <p><input type="submit" value="Login"> </p>
+            <!-- <button onClick="Location: href = <?php //echo base_url('../user/goToRegView'); ?>">Sign up</button> -->
+            <a href ="<?php echo base_url('user/register') ?>">Sign up</a>
         </form>
     </div> 
    <?php } ?>
@@ -78,7 +80,7 @@
                 />
             <div class="description">
                 <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>
-                <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
+                <div class="fb-like" data-href="http://localhost/e-izsole-development" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
                 <h4><?php echo $item->description ?></h4>
                 <p><?php echo $item->price; ?> Eur  </p>
             </div>

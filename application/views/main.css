@@ -106,6 +106,8 @@ body
     background-position: -350px -10px;
 }
 
+
+
 .item img
 {
     display: inline;
@@ -139,4 +141,35 @@ body
     display:block;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+#comixzone_reg
+{
+    width: 70%;
+    height: 100%;
+    margin-top: 0;
+    margin-left: 200px;
+    margin-right: 180px;
+    border-style: dotted;
+    border-width: 4px;
+    border-color: lightgray;
+    background-image:  url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");
+    background-position: -350px -10px;
+  
+}
+#comixzone_reg p
+{
+    color: red;
+}
+#comixzone_reg p#formp
+{
+    color: black;
+}
+#policy
+{
+    display: inline;
+    color: black;
+}
+#bigFont a
+{
+    font: bold 30px "Arial";
 }
