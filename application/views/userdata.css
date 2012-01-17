@@ -1,0 +1,13 @@
+table tr td
+{
+    width: 200px;
+}
+
+table tr td:first-child
+{
+    text-align: right;
+}
+tabke tr td input
+{
+    width: 180px;
+}
