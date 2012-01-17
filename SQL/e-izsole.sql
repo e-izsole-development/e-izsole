@@ -97,6 +97,7 @@ CREATE TABLE IF NOT EXISTS `dbo_parameters` (
 CREATE TABLE IF NOT EXISTS `dbo_categories` (
 	`id` INT AUTO_INCREMENT NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
+	`category` INT NOT NULL,
 	`language` INT NOT NULL,
 	PRIMARY KEY (`id`)
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=3 ;

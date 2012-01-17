@@ -39,6 +39,15 @@ class items_data extends CI_Model
         $this->db->select("i.id, i.title, i.photo, i.auction, i.price, d.description, d.short_description FROM dbo_items i, dbo_item_description d WHERE (i.id=d.id) AND (i.category='" . $cat ."');"); 
         return $this->db->get()->result();
     }
+    
+    function getItemsForSearch($param)
+    {
+        $select = "i.id, i.title, i.photo, i.auction, i.price, d.description, d.short_description ";
+        $from = "FROM dbo_items i, dbo_item_description d, dbo_categories c ";
+        $where = "WHERE (d.short_description like '%" . $param . "%' OR d.description like '%" . $param . "%' OR i.title like '%" . $param . "%' OR c.title like '%" . $param ."%' ) AND (i.id=d.id) AND (c.id=i.category);";
+        $this->db->select($select . $from . $where); 
+        return $this->db->get()->result();
+    }
 }
 
 ?>
