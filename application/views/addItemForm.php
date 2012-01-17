@@ -6,7 +6,7 @@
         <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
 <body>
     
-
+<?php //var_dump($this->session->userdata) ?>
 
     <div id="whole_page">
     <div id="top_bar">
@@ -49,8 +49,7 @@
             <p id="formp">Descrition*:</p>
             <?php echo form_error('description'); ?>
             <textarea name="description" id="description" size="30" value="<?php echo set_value('description'); ?>" rows="10" cols="60"></textarea>
-            <p id="formp">Photo*:</p>
-            <?php echo form_error('photo'); ?>
+            <p id="formp">Photo:</p>
             <p id="formp"><input name="photo" id="photo" size="30" type="file"/></p>
             <p id="formp">Auction (check, if yes): <input name="auction" id="auction" value="<?php echo set_value('auction'); ?>" type="checkbox"/></p>
             <p id="formp">Price*:</p>
@@ -62,6 +61,7 @@
             <option value="<?php echo $cat->id; ?>"><?php echo $cat->title; ?></option>
             <?php endforeach; ?>
             </select>
+            <input name="seller_ID" value="<?php echo $this->session->userdata('eizsoleuser') ?>" type="hidden"/>
             <br/><br/>
             <input type="checkbox" id="termsAgreement"/>
             <p id="policy">I have read and accepted the<a href="">User Agreement</a>

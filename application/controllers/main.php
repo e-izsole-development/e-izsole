@@ -92,6 +92,8 @@ class main extends CI_Controller
     }
     function newItem()
     {
+        if (isset($_POST))
+            unset($_POST);
         $data["categories"] = $this->system_data->getCategories();
         $this->load->view("addItemForm", $data);
     }

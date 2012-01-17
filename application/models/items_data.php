@@ -55,7 +55,8 @@ class items_data extends CI_Model
     }
     function addItemToDb($item, $itemDesc)
     {
-        
+        $this->db->insert('dbo_item_description', $itemDesc);
+        $this->db->insert('dbo_items', $item);
     }
 }
 
