@@ -47,7 +47,7 @@ class system_data extends CI_Model
             }
             
             //Updating LVL
-            $data = array('Rate' => 1/($euro));
+            $data = array('Rate' => 1*($euro));
             $where = "id = 'LVL'";
             $query = $this->db->update_string('dbo_currency', $data, $where); 
             $this->db->query($query);
@@ -59,7 +59,7 @@ class system_data extends CI_Model
                 {
                     if ($item->getElementsByTagName('ID')->item(0)->nodeValue == $foo->id)
                     {
-                        $data = array('Rate' => ($item->getElementsByTagName('Rate')->item(0)->nodeValue)/$euro);
+                        $data = array('Rate' => ($euro / $item->getElementsByTagName('Rate')->item(0)->nodeValue));
                         $where = "id = '" . $foo->id . "'";
                         $query = $this->db->update_string('dbo_currency', $data, $where); 
                         $this->db->query($query);
