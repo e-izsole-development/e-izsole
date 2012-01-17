@@ -23,13 +23,13 @@
                 My home
                 </li>
                 <li>
-                Add product
+                    <a href="<?php echo base_url('main/newItem') ?>">Add product</a>
                 </li>
                 <li>
                 Last seen
                 </li>
             <?php if ($this->session->userdata("eizsoleuser")!=null) { 
-            echo ("<li id=\"top_username\">Logged in as : "); 
+                echo ("<li id=\"top_username\">Logged in as : "); 
                 echo $this->session->userdata("eizsoleusername"); 
                 echo anchor('main/logout','   logout'); 
                 echo ("</li>");

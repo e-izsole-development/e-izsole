@@ -97,7 +97,11 @@ class main extends CI_Controller
         $data["items"] = $this->items_data->getItemsForSearch($_POST["parameters"]);
         $this->load->view('main',$data);
     }
-    
+    function newItem()
+    {
+        $data["categories"] = $this->system_data->getCategories();
+        $this->load->view("addItemForm", $data);
+    }
     function lastTenViewed(){
         
     }

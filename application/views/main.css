@@ -106,7 +106,7 @@ body
     width: 67%;
     height: 100%;
     margin-top: 0;
-    margin-left: 200px;
+    margin-left: 15%;
     margin-right: 180px;
     border-style: dotted;
     border-width: 4px;
@@ -181,4 +181,8 @@ body
 #bigFont a
 {
     font: bold 30px "Arial";
+}
+input#auction
+{
+    display: inline;
 }
