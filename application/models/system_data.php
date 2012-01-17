@@ -22,6 +22,23 @@ class system_data extends CI_Model
         $this->db->select('title,id');
         return $this->db->get('dbo_categories')->result();
     }
+    
+    function getCurrency()
+    {
+        return $this->db->get('dbo_currency')->result();
+    }
+    
+    function calculateCurrency()
+    {
+        $xml = file_get_contents('http://www.bank.lv/vk/xml.xml');
+        if (!(empty($xml)))
+        {
+            $doc = new DOMDocument();
+            $doc->loadXML($xml);
+            $xpath = new DOMXpath($doc);
+            $xpath -> query("//CRates/Date/Currencies");
+        }
+    }
 }
 
 ?>

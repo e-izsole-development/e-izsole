@@ -38,8 +38,24 @@
         </div>
         <div id="top_bar_right">
             <ul>
-            <li>lang</li>
-            <li>curr</li>
+            <li>
+                <form method="POST" action=<?php echo current_url(); ?> id="lang">
+                    <select name="language" onchange="document.forms['lang'].submit();">
+                        <option value="1">LV</option>
+                        <option value="2">EN</option>
+                        <option value="3">RU</option>
+                    </select>
+                </form>
+            </li>
+            <li>
+                <form method="POST" action=<?php echo current_url(); ?> id="curr">
+                    <select name="currency" onchange="document.forms['curr'].submit();">
+                        <?php foreach ($currency as $curr): ?>
+                        <option value=<?php echo $curr->id . " "; ?> <?php if ($curr->id == $this->session->userdata("eizsolecurr")) { ?>selected='selected'<?php }?> > <?php echo $curr->id;?> </option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+            </li>
             </ul>
         </div>
         <div id="clear">
@@ -83,7 +99,7 @@
                 <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>
                 <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
                 <h4><?php echo $item->short_description ?></h4>
-                <p><?php echo $item->price; ?> Eur  </p>
+                <p><?php echo $item->price; echo " " . $this->session->userdata("eizsolecurr");?> </p>
             </div>
         </div>
         <?php endforeach;?>

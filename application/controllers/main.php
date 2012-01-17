@@ -7,11 +7,15 @@ class main extends CI_Controller
         parent::__construct();
         $this->load->library('session');
         $this->load->helper('form');
-        
+        if ($this->session->userdata("eizsolecurr")==null) $this->session->set_userdata("eizsolecurr","LVL");
     }
     
     function index()
     {
+        var_dump($_POST);
+        var_dump($this->session->userdata("eizsolecurr"));
+        if ($_POST["currency"] != null) $this->session->set_userdata("eizsolecurr",$_POST["currency"]);
+        
         $this->load->model('items_data');
         $this->load->model('system_data');
         $this->load->helper('url');
@@ -19,7 +23,7 @@ class main extends CI_Controller
         $data = array();
         $data["categories"] = $this->system_data->getCategories();
         
-        
+        $data["currency"] = $this->system_data->getCurrency();
         
         $data["items"] = $this->items_data->getAllShortInfo();
         $data["username"] = "asd";
