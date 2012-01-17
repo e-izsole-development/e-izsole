@@ -25,6 +25,7 @@ body
 
 #top_bar 
 {
+    padding: 0px;
     width: 100%;
     display: block;
     background: grey; 
@@ -50,14 +51,9 @@ body
 #top_bar_right
 {
     float: right;
-    text-alignment: right;
     width:49%;
     display:inline;
 
-}
-#top_bar_right
-{
-    width: 49%;
 }
 #top_bar_right ul
 {
@@ -74,24 +70,21 @@ body
 #top_username
 {
     background-color: bisque;
+    margin:0px;
+    width:50%;
 }
 #clear
 {
     clear: both;
 }
 
-#top_username
-{
-    margin:0px;
-    width:50%;
-}
 
 
 #Kategorijas
 {
     display: inline;
     float: left;
-    width: 200px;
+    width: 15%;
     margin:0px;
     padding:0px;
     margin-top: 30px;
@@ -101,7 +94,7 @@ body
 
 #comixzone
 {
-    width: 100%;
+    width: 85%;
     height: 100%;
     margin-top: 0;
     margin-left: 200px;
