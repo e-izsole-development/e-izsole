@@ -35,8 +35,37 @@ class system_data extends CI_Model
         {
             $doc = new DOMDocument();
             $doc->loadXML($xml);
-            $xpath = new DOMXpath($doc);
-            $xpath -> query("//CRates/Date/Currencies");
+            
+            $val = $this->getCurrency();
+            //finding EUR
+            foreach ($doc->getElementsByTagName('Currency') as $item)
+            {
+                if ($item->getElementsByTagName('ID')->item(0)->nodeValue == 'EUR')
+                {
+                    $euro = $item->getElementsByTagName('Rate')->item(0)->nodeValue;
+                }
+            }
+            
+            //Updating LVL
+            $data = array('Rate' => 1/($euro));
+            $where = "id = 'LVL'";
+            $query = $this->db->update_string('dbo_currency', $data, $where); 
+            $this->db->query($query);
+            
+            //Updating others
+            foreach ($doc->getElementsByTagName('Currency') as $item)
+            {
+                foreach ($val as $foo)
+                {
+                    if ($item->getElementsByTagName('ID')->item(0)->nodeValue == $foo->id)
+                    {
+                        $data = array('Rate' => ($item->getElementsByTagName('Rate')->item(0)->nodeValue)/$euro);
+                        $where = "id = '" . $foo->id . "'";
+                        $query = $this->db->update_string('dbo_currency', $data, $where); 
+                        $this->db->query($query);
+                    }
+                }
+            }
         }
     }
 }

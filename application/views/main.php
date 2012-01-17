@@ -80,10 +80,13 @@
             <p><input name="login" id="login" type="text"/></p>
             <p>Pasword:</p>
             <p><input name="password" id="password" type="password"/></p>
-            <p><input type="submit" value="Submit"/> </p>
+            <p><input type="submit" value="Login"> </p>
+            <!-- <button onClick="Location: href = <?php //echo base_url('../user/goToRegView'); ?>">Sign up</button> -->
+            <a href ="<?php echo base_url('user/register') ?>">Sign up</a>
         </form>
     </div> 
    <?php } ?>
+
         
     <div id="comixzone">
         <?php echo form_open('main/search');?>
@@ -99,7 +102,7 @@
                 <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>
                 <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
                 <h4><?php echo $item->short_description ?></h4>
-                <p><?php echo $item->price; echo " " . $this->session->userdata("eizsolecurr");?> </p>
+                <p><?php echo ($item->price * $currencyIndex[$this->session->userdata("eizsolecurr")]); echo " " . $this->session->userdata("eizsolecurr");?> </p>
             </div>
         </div>
         <?php endforeach;?>
