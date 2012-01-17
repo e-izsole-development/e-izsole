@@ -9,6 +9,7 @@ class Formval extends CI_controller
 
 	$this->load->library('form_validation');
         $this->load->model('user_data', 'users');
+        $this->load->model('items_data', 'items');
     }
     
     
@@ -28,7 +29,9 @@ class Formval extends CI_controller
         $this->form_validation->set_rules('username', 'Username', 'required');
 	$this->form_validation->set_rules('password', 'Password', 'required');
 	$this->form_validation->set_rules('repassword', 'Password Confirmation', 'required|matches[password]');
-        //$this->form_validation->set_rules('termsAgreement[]', 'Terms and Agreement', 'required');
+        //$this->form_validation->set_rules('termsAgreement', 'Terms and Agreement', 'greater_than[1]');
+        
+        //$this->form_validation->set_message('greater_than[1]', 'You must accept user agreement and privacy policy');
         
 
 	if ($this->form_validation->run() == FALSE)
@@ -44,6 +47,37 @@ class Formval extends CI_controller
             $this->load->view("successReg", $data);
 	}
 	
+    }
+    function itemVal()
+    {
+        $this->form_validation->set_rules('title', 'Title', 'required');
+	$this->form_validation->set_rules('short_description', 'Short description', 'required');
+	$this->form_validation->set_rules('description', 'Description', 'required');
+        $this->form_validation->set_rules('price', 'Price', 'required');
+        //$this->form_validation->set_rules('termsAgreement[]', 'Terms and Agreement', 'required');
+        
+
+	if ($this->form_validation->run() == FALSE)
+	{
+            $this->load->view('addItemForm');
+	}
+	else
+	{
+            $cloned['title'] = $_POST['title'];
+            $cloned['photo']=$_POST['photo'];
+            $cloned['price']=$_POST['price'];
+            $cloned['seller_id'] = $_POST['seller_ID'];
+            $cloned['category'] = $_POST['category'];
+            if (isset($_POST['auction']))
+                $cloned['auction'] = $_POST['auction'];
+                else $cloned['auction'] = 0;
+                
+            $clonedToDesc['description'] = $_POST['description'];
+            $clonedToDesc['short_description'] = $_POST['short_description'];
+            
+            $this->items->addItemToDb($cloned, $clonedToDesc);
+            $this->load->view("itemSuccess");
+	}
     }
     
 }

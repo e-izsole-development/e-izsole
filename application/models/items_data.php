@@ -48,6 +48,16 @@ class items_data extends CI_Model
         $this->db->select($select . $from . $where); 
         return $this->db->get()->result();
     }
+    function getCategoriesTitle()
+    {
+        $this->db->select("title FROM dbo_categories ");
+        return $this->db->get()->result();
+    }
+    function addItemToDb($item, $itemDesc)
+    {
+        $this->db->insert('dbo_item_description', $itemDesc);
+        $this->db->insert('dbo_items', $item);
+    }
 }
 
 ?>
