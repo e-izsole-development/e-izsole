@@ -24,5 +24,11 @@ class User extends CI_Controller
         $this->users->registerUser($cloned);
         $this->load->view("successReg", $data);
     }
+    
+    function editUser()
+    {
+        
+        $this->load->view('editProfile');
+    }
 }
 ?>

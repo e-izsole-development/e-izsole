@@ -15,24 +15,8 @@ class main extends CI_Controller
     
     function index()
     {
-        $this->system_data->calculateCurrency();
-        if (!empty($_POST["currency"])) $this->session->set_userdata("eizsolecurr",$_POST["currency"]);
-        
-        $data = array();
-        $data["categories"] = $this->system_data->getCategories();
-        
-        $data["currency"] = $this->system_data->getCurrency();
-        
-        $currencyIndex = array();
-        foreach($data["currency"] as $oneOfCurrencies)
-        {
-            $currencyIndex[$oneOfCurrencies->id] = $oneOfCurrencies->Rate;
-        }
-        
-        $data["currencyIndex"] = $currencyIndex;
-        
+        $data = $this->prepareData();
         $data["items"] = $this->items_data->getAllShortInfo();
-        $data["username"] = "asd";
         $this->load->view('main',$data);
     }
     
@@ -59,8 +43,7 @@ class main extends CI_Controller
         $this->load->model('system_data');
         
         
-        $data = array();
-        $data['categories'] = $this->system_data->getCategories();
+        $data = $this->prepareData();
         $data['item'] = $this->items_data->getItemFullInfo($id);
         
         $this->load->view('item',$data);
@@ -73,13 +56,8 @@ class main extends CI_Controller
     }
     
     function category($id)
-    {
-        $this->load->model('items_data');
-        $this->load->model('system_data');
-        $this->load->helper('url');
-        
-        $data = array();
-        $data["categories"] = $this->system_data->getCategories();
+    {        
+        $data = $this->prepareData();
         
         $data["items"] = $this->items_data->getItemsByCategory($id);
         $this->load->view('main',$data);
@@ -87,15 +65,30 @@ class main extends CI_Controller
     
     function search()
     {
-        $this->load->model('items_data');
-        $this->load->model('system_data');
-        $this->load->helper('url');
+        $data = $this->prepareData();
+        
+        if (!empty($_POST["parameters"])) $data["items"] = $this->items_data->getItemsForSearch($_POST["parameters"]);
+        $this->load->view('main',$data);
+    }
+    
+    function prepareData()
+    {
+        $this->system_data->calculateCurrency();
+        if (!empty($_POST["currency"])) $this->session->set_userdata("eizsolecurr",$_POST["currency"]);
         
         $data = array();
         $data["categories"] = $this->system_data->getCategories();
         
-        $data["items"] = $this->items_data->getItemsForSearch($_POST["parameters"]);
-        $this->load->view('main',$data);
+        $data["currency"] = $this->system_data->getCurrency();
+        
+        $currencyIndex = array();
+        foreach($data["currency"] as $oneOfCurrencies)
+        {
+            $currencyIndex[$oneOfCurrencies->id] = $oneOfCurrencies->Rate;
+        }
+        
+        $data["currencyIndex"] = $currencyIndex;
+        return $data;
     }
     function newItem()
     {

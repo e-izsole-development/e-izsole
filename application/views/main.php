@@ -18,23 +18,27 @@
     <div id="whole_page">
     <div id="top_bar">
         <div id="top_bar_left">
+            <?php if ($this->session->userdata("eizsoleuser")!=null) { ?>
             <ul>
 		<li>
-                My home
+                    <form method="POST" action="javascript:location.href=document.getElementById('profileDestination').value" id="profile">
+                        <select id="profileDestination" onchange="document.forms['profile'].submit();">
+                            <option selected="selected" value=<?php echo current_url(); ?>>Profile</option>
+                            <option value=<?php echo base_url('user/editUser'); ?>>Edit my profile</option>
+                            <option value=<?php echo base_url('main/newItem'); ?>>Add Product</option>
+                            <option value=<?php echo base_url(); ?>>Last Seen</option>
+                            <option value=<?php echo base_url('main/logout'); ?>>logout</option>
+                        </select>
+                    </form>
+                
                 </li>
-                <li>
-                    <a href="<?php echo base_url('main/newItem') ?>">Add product</a>
-                </li>
-                <li>
-                Last seen
-                </li>
-            <?php if ($this->session->userdata("eizsoleuser")!=null) { 
-                echo ("<li id=\"top_username\">Logged in as : "); 
+            <?php
+            echo ("<li id=\"top_username\">Logged in as : "); 
                 echo $this->session->userdata("eizsoleusername"); 
-                echo anchor('main/logout','   logout'); 
                 echo ("</li>");
-             } ?>
+             ?>
                 </ul>
+                <?php } ?>
         </div>
         <div id="top_bar_right">
             <ul>
