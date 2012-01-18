@@ -51,9 +51,10 @@ class main extends CI_Controller
     }
    
     function myProductForSail(){
+        $data = $this->prepareData();
         $this->load->model('reports');
-        $data=$this->reports->findNotSeldProductByUserID($this->session->userdata('eizsoleuser'));
-        $this->load->view('reports',$data);
+        $data['items']=$this->reports->findNotSeldProductByUserID($this->session->userdata('eizsoleuser'));   
+        $this->load->view('report',$data);
     }
     
     function category($id)
