@@ -61,8 +61,31 @@
         </div>
 	</div>
     
-    <div id="comixzone">
+        <div id="logo">
+            <a  href="<?php echo base_url('main'); ?>"><image src="<?php echo base_url('images/logo.jpg'); ?>"/></a>
+        </div>
         
+    <div id="comixzone">
+        <p>
+            Count of users: <?php echo $usersCount ?>
+        </p>
+        <p>
+            Count of items: <?php echo $itemsCount ?>
+        </p>
+        <p>
+            Change user's type:
+        </p>
+        <p>
+            <?php echo form_open('admin/changeUserType');?>
+            username: <input name="username" id="username"/> 
+            <select name="type">
+                <option value="r">Registered</option>
+                <option value="m">Moderator</option>
+                <option value="a">Administrator</option>
+            </select>
+            <input value="Change" type="submit"/>
+            </form>
+        </p>
         </div>
     </div>
 </body>

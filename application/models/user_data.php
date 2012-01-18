@@ -15,6 +15,14 @@ class User_data extends CI_Model
         return $obj[0]->id;
     }
     
+    function getUserId1($login)
+    {
+        $this->db->select("id FROM dbo_users WHERE username = '" . $login . "';");
+        $obj = $this->db->get()->result();     
+        if (empty($obj)) return null;
+        return $obj[0]->id;
+    }
+    
     function getUser2POST($id)
     {
         $this->db->select('* FROM dbo_users WHERE id='.$id);
@@ -44,6 +52,14 @@ class User_data extends CI_Model
         $t = $this->db->get()->result();
         $t = $t[0];
         return $t->user_type;
+    }
+    
+    function changeType($username,$type)
+    {
+        if ($username == $this->session->userdata("eizsoleusername")) return;
+        $uid = $this->getUserId1($username);
+        
+        $this->db->update('dbo_users',array('user_type' => $type),"id = ".$uid);
     }
     
     function registerUser($regData)

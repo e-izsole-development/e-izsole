@@ -110,7 +110,7 @@
                 />
             <div class="description">
                 <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>
-                <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
+                <div class="fb-like" data-href="<?php echo base_url('main/item/'.$item->id); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
                 <h4><?php echo $item->short_description ?></h4>
                 <p><?php echo ($item->price * $currencyIndex[$this->session->userdata("eizsolecurr")]); echo " " . $this->session->userdata("eizsolecurr");?> </p>
             </div>

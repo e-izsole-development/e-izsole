@@ -194,3 +194,14 @@ input#auction
 {
     display: inline;
 }
+
+#logo a
+{    
+    height: 30px;    
+}
+
+#logo a img
+{
+    width: 15%;
+    position: absolute;
+}

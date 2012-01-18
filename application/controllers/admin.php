@@ -15,11 +15,23 @@ class admin extends CI_Controller
     function __construct() 
     {
         parent::__construct();
+        $this->load->model('system_data');
+        $this->load->model('user_data');
+        $this->load->helper('form');
     }
     
     function index()
     {
-        $this->load->view('admin');
+        $data = $this->system_data->getStatistics();
+        $this->load->view('admin',$data);
+    }
+    
+    function changeUserType()
+    {
+        $username = $_POST["username"];
+        $type = $_POST["type"];
+        $this->user_data->changeType($username,$type);
+        $this->index();
     }
 }
 

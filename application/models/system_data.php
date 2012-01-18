@@ -68,6 +68,14 @@ class system_data extends CI_Model
             }
         }
     }
+    
+    function getStatistics()
+    {
+        $data = array();
+        $data["usersCount"] = $this->db->count_all('dbo_users');
+        $data["itemsCount"] = $this->db->count_all('dbo_items');
+        return $data;
+    }
 }
 
 ?>
