@@ -26,8 +26,11 @@
                             <option selected="selected" value=<?php echo current_url(); ?>>Profile</option>
                             <option value=<?php echo base_url('user/editUser'); ?>>Edit my profile</option>
                             <option value=<?php echo base_url('main/newItem'); ?>>Add Product</option>
+                            <?php var_dump($userType); if ($userType =='a') { ?>
+                            <option value=<?php echo base_url('admin'); ?>>Admin</option>
+                            <?php }?>
                             <option value=<?php echo base_url(); ?>>Last Seen</option>
-                            <option value=<?php echo base_url('main/logout'); ?>>logout</option>
+                            <option value=<?php echo base_url('main/logout'); ?>>Logout</option>
                         </select>
                     </form>
                 
@@ -67,6 +70,9 @@
         </div>
 	</div>
     
+        <div id="logo">
+            <a  href="<?php echo base_url('main'); ?>"><image src="<?php echo base_url('images/logo.jpg'); ?>"/></a>
+        </div>
         
 	<div id="Kategorijas">
             <ul>

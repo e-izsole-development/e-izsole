@@ -27,8 +27,11 @@ class User extends CI_Controller
     
     function editUser()
     {
-        
-        $this->load->view('editProfile');
+        $id = $this->session->userdata('eizsoleuser');
+        $this->users->getUser2POST($id);
+        $data = array();
+        $data['names'] = $this->users->getNames();
+        $this->load->view('editProfile',$data);
     }
 }
 ?>

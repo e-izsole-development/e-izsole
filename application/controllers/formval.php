@@ -59,6 +59,42 @@ class Formval extends CI_controller
 	}
 	
     }
+    
+    function editVal()
+    {
+	$this->form_validation->set_rules('country', 'Country', 'required');
+        $this->form_validation->set_rules('city', 'City', 'required');
+	$this->form_validation->set_rules('address', 'Address', 'required');
+	$this->form_validation->set_rules('e_mail', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        if (!empty($_POST["newpassword"]))
+	$this->form_validation->set_rules('repassword', 'Password Confirmation', 'required|matches[password]');
+        //$this->form_validation->set_rules('termsAgreement', 'Terms and Agreement', 'greater_than[1]');
+        
+        //$this->form_validation->set_message('greater_than[1]', 'You must accept user agreement and privacy policy');
+        
+
+	if ($this->form_validation->run() == FALSE)
+	{
+            $data = array();
+            $data['names'] = $this->users->getNames();
+            $this->load->view('editProfile',$data);
+	}
+	else
+	{
+            $cloned = $_POST;
+            unset($cloned["repassword"]);
+            $data["cloned"] = $cloned;
+            if (!empty($_POST["newpassword"]))
+            {
+                $cloned["password"] = $cloned["newpassword"];
+            }
+            unset($cloned["newpassword"]);
+            $this->users->editUser($cloned);
+            $this->load->view("successReg", $data);
+	}
+    }
+    
     function itemVal()
     {
         $data["categories"] = $this->system_data->getCategories();
