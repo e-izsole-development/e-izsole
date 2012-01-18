@@ -50,9 +50,11 @@
         
         
         <div id="leftzone">
-            <img 
-                src="<?php if ($item->photo==null) echo base_url('images/nope.jpg'); else echo $item->photo; ?>" 
-                />
+            
+                <?php if ($item->photo==null) echo "<img src=\"" . base_url('images/nope.jpg') . ' "/>'; 
+                else echo '<a href="' . base_url('application/views/images/Uploads/' . $item->photo . '.jpg') . '" >' .
+                        '<img src="' . base_url('application/views/images/Uploads/' . $item->photo . '_thumb.jpg') . '" /></a>'; ?> 
+                
             <h1><?php echo $item->title ?></h1>
             <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
         </div>
