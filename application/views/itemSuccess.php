@@ -6,7 +6,7 @@
         <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
 <body>
     
-
+<?php var_dump($photo); ?>
 
 
     <div id="whole_page">

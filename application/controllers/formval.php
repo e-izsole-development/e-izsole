@@ -10,6 +10,17 @@ class Formval extends CI_controller
 	$this->load->library('form_validation');
         $this->load->model('user_data', 'users');
         $this->load->model('items_data', 'items');
+        $this->load->model('system_data');
+        
+        $config['upload_path'] = './application/views/images/Uploads/';
+        $config['allowed_types'] = 'jpg';
+        $config['max_size'] = '100';
+        $config['max_width'] = '800';
+        $config['max_height'] = '600';
+
+        $this->load->library('upload', $config);
+        
+        
     }
     
     
@@ -86,6 +97,7 @@ class Formval extends CI_controller
     
     function itemVal()
     {
+        $data["categories"] = $this->system_data->getCategories();
         $this->form_validation->set_rules('title', 'Title', 'required');
 	$this->form_validation->set_rules('short_description', 'Short description', 'required');
 	$this->form_validation->set_rules('description', 'Description', 'required');
@@ -95,24 +107,49 @@ class Formval extends CI_controller
 
 	if ($this->form_validation->run() == FALSE)
 	{
-            $this->load->view('addItemForm');
+            $this->load->view('addItemForm', $data);
 	}
 	else
 	{
-            $cloned['title'] = $_POST['title'];
-            $cloned['photo']=$_POST['photo'];
-            $cloned['price']=$_POST['price'];
-            $cloned['seller_id'] = $_POST['seller_ID'];
-            $cloned['category'] = $_POST['category'];
-            if (isset($_POST['auction']))
-                $cloned['auction'] = $_POST['auction'];
-                else $cloned['auction'] = 0;
-                
-            $clonedToDesc['description'] = $_POST['description'];
-            $clonedToDesc['short_description'] = $_POST['short_description'];
+            if ( ! $this->upload->do_upload())
+		{
+			$data['error'] = $this->upload->display_errors();
+
+			$this->load->view('addItemForm', $data);
+		}
+		else {
+                    $cloned['title'] = $_POST['title'];
+                    $tempo = $this->upload->data();
+                    $cloned['photo']= $tempo['raw_name'];
+                    $cloned['price']=$_POST['price'];
+                    $cloned['seller_id'] = $_POST['seller_ID'];
+                    $cloned['category'] = $_POST['category'];
+                    
+                    $configi['image_library'] = 'gd2';
+                    $configi['source_image'] = $tempo['full_path'];
+                    $configi['create_thumb'] = TRUE;
+                    $configi['maintain_ratio'] = TRUE;
+                    $configi['width'] = 50;
+                    $configi['height'] = 50;
+
+                    $this->load->library('image_lib', $configi);
+
+                    $this->image_lib->resize(); 
+                    
+                    
+                    
+                    if (isset($_POST['auction']))
+                        $cloned['auction'] = $_POST['auction'];
+                        else $cloned['auction'] = 0;
+
+                    $clonedToDesc['description'] = $_POST['description'];
+                    $clonedToDesc['short_description'] = $_POST['short_description'];
+
+                    $this->items->addItemToDb($cloned, $clonedToDesc);
+                    $data['upload_data'] = $this->upload->data();
+                    $this->load->view("itemSuccess", $cloned);
+                }
             
-            $this->items->addItemToDb($cloned, $clonedToDesc);
-            $this->load->view("itemSuccess");
 	}
     }
     

@@ -106,7 +106,7 @@
         <?php foreach ($items as $item): ?>
         <div class="item">
             <img 
-                src="<?php if ($item->photo==null) echo base_url('images/nope.jpg'); else echo $item->photo; ?>" 
+                src="<?php if ($item->photo==null) echo base_url('images/nope.jpg'); else echo base_url('application/views/images/Uploads/' . $item->photo . '_thumb.jpg'); ?>" 
                 />
             <div class="description">
                 <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>
