@@ -9,6 +9,7 @@ class main extends CI_Controller
         $this->load->helper('form');
         $this->load->model('items_data');
         $this->load->model('system_data');
+        $this->load->model('user_data');
         $this->load->helper('url');
         if ($this->session->userdata("eizsolecurr")==null) $this->session->set_userdata("eizsolecurr","LVL");
     }
@@ -86,6 +87,8 @@ class main extends CI_Controller
         {
             $currencyIndex[$oneOfCurrencies->id] = $oneOfCurrencies->Rate;
         }
+        if ($this->session->userdata("eizsoleuser")!=null) $data["userType"] = $this->user_data->getUserType($this->session->userdata("eizsoleuser"));
+        else $data["userType"] = 'n';
         
         $data["currencyIndex"] = $currencyIndex;
         return $data;

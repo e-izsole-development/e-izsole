@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>e-izsole</title>
-        <link REL=StyleSheet HREF="/e-izsole-development/application/views/main.css"/>
+        <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
 <body>
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -26,8 +26,11 @@
                             <option selected="selected" value=<?php echo current_url(); ?>>Profile</option>
                             <option value=<?php echo base_url('user/editUser'); ?>>Edit my profile</option>
                             <option value=<?php echo base_url('main/newItem'); ?>>Add Product</option>
+                            <?php var_dump($userType); if ($userType =='a') { ?>
+                            <option value=<?php echo base_url('admin'); ?>>Admin</option>
+                            <?php }?>
                             <option value=<?php echo base_url(); ?>>Last Seen</option>
-                            <option value=<?php echo base_url('main/logout'); ?>>logout</option>
+                            <option value=<?php echo base_url('main/logout'); ?>>Logout</option>
                         </select>
                     </form>
                 
@@ -51,15 +54,6 @@
                     </select>
                 </form>
             </li>
-            <li>
-                <form method="POST" action=<?php echo current_url(); ?> id="curr">
-                    <select name="currency" onchange="document.forms['curr'].submit();">
-                        <?php foreach ($currency as $curr): ?>
-                        <option value=<?php echo $curr->id . " "; ?> <?php if ($curr->id == $this->session->userdata("eizsolecurr")) { ?>selected='selected'<?php }?> > <?php echo $curr->id;?> </option>
-                        <?php endforeach; ?>
-                    </select>
-                </form>
-            </li>
             </ul>
         </div>
         <div id="clear">
@@ -67,42 +61,9 @@
         </div>
 	</div>
     
-        
-	<div id="Kategorijas">
-            <ul>
-                <li><a href=<?php echo site_url('main/'); ?> >All</a></li>
-                <?php foreach ($categories as $cat): ?>
-                <li><a href=<?php echo site_url('main/category/' . $cat->id); ?> ><?php echo $cat->title ?></a></li>
-                <?php endforeach;?>
-            </ul>
-	</div>
-        
     <div id="comixzone">
         
-        
-        <div id="leftzone">
-            <img 
-                src="<?php if ($item->photo==null) echo base_url('images/nope.jpg'); else echo $item->photo; ?>" 
-                />
-            <h1><?php echo $item->title ?></h1>
-            <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
         </div>
-        <div id="rightzone">
-            <p><?php echo $item->description ?></p>
-            <table>
-            <?php foreach ($item->parameters as $parameter): ?>
-                <tr>
-                    <td>
-                        <?php echo $parameter->title ?>
-                    </td>
-                    <td>
-                        <?php echo $parameter->value ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </table>
-        </div>
-    </div>
     </div>
 </body>
 </html>

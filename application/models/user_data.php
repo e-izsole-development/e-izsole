@@ -14,6 +14,38 @@ class User_data extends CI_Model
         if (empty($obj)) return null;
         return $obj[0]->id;
     }
+    
+    function getUser2POST($id)
+    {
+        $this->db->select('* FROM dbo_users WHERE id='.$id);
+        $user = $this->db->get()->result();
+        $user = $user[0];
+        $_POST["country"]=$user->country;
+        $_POST["city"]=$user->city;
+        $_POST["address"]=$user->address;
+        $_POST["phone_number"]=$user->phone_number;
+        $_POST["e_mail"]=$user->e_mail;
+        $_POST["username"]=$user->username;
+        $_POST["name"]=$user->name;
+        $_POST["surname"]=$user->surname;
+    }
+    
+    function getNames()
+    {
+        $id = $this->session->userdata('eizsoleuser');
+        $this->db->select('name, surname, username FROM dbo_users WHERE id='.$id);
+        $t = $this->db->get()->result();
+        return $t[0];
+    }
+    
+    function getUserType($id)
+    {
+        $this->db->select("user_type FROM dbo_users WHERE id=".$id);
+        $t = $this->db->get()->result();
+        $t = $t[0];
+        return $t->user_type;
+    }
+    
     function registerUser($regData)
     {
         $regData["user_type"] = "r";
@@ -33,6 +65,11 @@ class User_data extends CI_Model
                 . $regData("e_mail") . "', '" 
                 . $regData("username") . "', '" 
                 . $regData("password") . "', 'r', 'n', 1, 1)"); */
+    }
+    
+    function editUser($regData)
+    {
+        $this->db->insert('dbo_users', $regData);
     }
 }
 ?>
