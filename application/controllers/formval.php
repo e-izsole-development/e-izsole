@@ -136,6 +136,13 @@ class Formval extends CI_controller
 
                     $this->image_lib->resize(); 
                     
+             /*       $configi['width'] = 300;
+                    $configi['height'] = 300;
+
+                    $this->load->library('image_lib', $configi);
+*/
+                    $this->image_lib->resize(); 
+                    
                     
                     
                     if (isset($_POST['auction']))
