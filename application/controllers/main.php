@@ -75,7 +75,7 @@ class main extends CI_Controller
         $this->load->view('main',$data);
     }
     
-    function lastTenViewed(){
+    function lastTwentyViewed(){
         
     }
     
