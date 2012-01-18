@@ -54,6 +54,7 @@ class main extends CI_Controller
         $data = $this->prepareData();
         $this->load->model('reports');
         $data['items']=$this->reports->findNotSeldProductByUserID($this->session->userdata('eizsoleuser'));   
+        $data['PageName']='E-izsole: My products';
         $this->load->view('report',$data);
     }
     
@@ -101,8 +102,12 @@ class main extends CI_Controller
         $data["categories"] = $this->system_data->getCategories();
         $this->load->view("addItemForm", $data);
     }
-    function lastTenViewed(){
-        
+    function lastTwenyViewed(){
+        $data = $this->prepareData();
+        $this->load->model('reports');
+        $data['items']=$this->reports->findLastViwedByUserID($this->session->userdata('eizsoleuser'));   
+        $data['PageName']='E-izsole: Last viewed';
+        $this->load->view('report',$data);
     }
     
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>e-izsole</title>
+	<title><?php echo $PageName ?></title>
         <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
 <body>
     <div id="fb-root"></div>

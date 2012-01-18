@@ -32,6 +32,7 @@
                             <option value=<?php echo base_url(); ?>>Last Seen</option>
                             <option value=<?php echo base_url('main/logout'); ?>>Logout</option>
                             <option value=<?php echo base_url('main/myProductForSail'); ?>>My Products</option>
+                            <option value=<?php echo base_url('main/lastTwenyViewed'); ?>>Last Viewed</option>
                         </select>
                     </form>
                 
