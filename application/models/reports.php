@@ -18,7 +18,7 @@ class items_data extends CI_Model
         $query = $this->db->get();
         $this->db->from('dbo_items as i');
         $this->db->join('dbo_item_description as d', 'i.id=d.id');
-        $this->db->like('i.id',$query->result());
+        $this->db->like('i.id',$query);
         $this->db->select('i.id, i.title, i.photo, i.auction, i.price, d.description, d.short_description');       
         return $this->db->get()->resut();
     }
