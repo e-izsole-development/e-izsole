@@ -31,15 +31,15 @@ class Formval extends CI_controller
     }
     function regVal()
     {
-	$this->form_validation->set_rules('name', 'Name', 'required');
-	$this->form_validation->set_rules('surname', 'Surname', 'required');
-	$this->form_validation->set_rules('country', 'Country', 'required');
-        $this->form_validation->set_rules('city', 'City', 'required');
-	$this->form_validation->set_rules('address', 'Address', 'required');
-	$this->form_validation->set_rules('e_mail', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('username', 'Username', 'required');
-	$this->form_validation->set_rules('password', 'Password', 'required');
-	$this->form_validation->set_rules('repassword', 'Password Confirmation', 'required|matches[password]');
+	$this->form_validation->set_rules('name', 'Name', 'required|xss_clean');
+	$this->form_validation->set_rules('surname', 'Surname', 'required|xss_clean');
+	$this->form_validation->set_rules('country', 'Country', 'required|xss_clean');
+        $this->form_validation->set_rules('city', 'City', 'required|xss_clean');
+	$this->form_validation->set_rules('address', 'Address', 'required|xss_clean');
+	$this->form_validation->set_rules('e_mail', 'Email', 'required|valid_email|xss_clean');
+        $this->form_validation->set_rules('username', 'Username', 'required|xss_clean');
+	$this->form_validation->set_rules('password', 'Password', 'required|xss_clean');
+	$this->form_validation->set_rules('repassword', 'Password Confirmation', 'required|matches[password]|xss_clean');
         //$this->form_validation->set_rules('termsAgreement', 'Terms and Agreement', 'greater_than[1]');
         
         //$this->form_validation->set_message('greater_than[1]', 'You must accept user agreement and privacy policy');
@@ -62,13 +62,13 @@ class Formval extends CI_controller
     
     function editVal()
     {
-	$this->form_validation->set_rules('country', 'Country', 'required');
-        $this->form_validation->set_rules('city', 'City', 'required');
-	$this->form_validation->set_rules('address', 'Address', 'required');
-	$this->form_validation->set_rules('e_mail', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('password', 'Password', 'required');
+	$this->form_validation->set_rules('country', 'Country', 'required|xss_clean');
+        $this->form_validation->set_rules('city', 'City', 'required|xss_clean');
+	$this->form_validation->set_rules('address', 'Address', 'required|xss_clean');
+	$this->form_validation->set_rules('e_mail', 'Email', 'required|valid_email|xss_clean');
+        $this->form_validation->set_rules('password', 'Password', 'required|xss_clean');
         if (!empty($_POST["newpassword"]))
-	$this->form_validation->set_rules('repassword', 'Password Confirmation', 'required|matches[password]');
+	$this->form_validation->set_rules('repassword', 'Password Confirmation', 'required|matches[password]|xss_clean');
         //$this->form_validation->set_rules('termsAgreement', 'Terms and Agreement', 'greater_than[1]');
         
         //$this->form_validation->set_message('greater_than[1]', 'You must accept user agreement and privacy policy');
@@ -98,10 +98,10 @@ class Formval extends CI_controller
     function itemVal()
     {
         $data["categories"] = $this->system_data->getCategories();
-        $this->form_validation->set_rules('title', 'Title', 'required');
-	$this->form_validation->set_rules('short_description', 'Short description', 'required');
-	$this->form_validation->set_rules('description', 'Description', 'required');
-        $this->form_validation->set_rules('price', 'Price', 'required');
+        $this->form_validation->set_rules('title', 'Title', 'required|xss_clean');
+	$this->form_validation->set_rules('short_description', 'Short description', 'required|xss_clean');
+	$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+        $this->form_validation->set_rules('price', 'Price', 'required|xss_clean');
         //$this->form_validation->set_rules('termsAgreement[]', 'Terms and Agreement', 'required');
         
 
@@ -115,16 +115,12 @@ class Formval extends CI_controller
 		{
 			$data['error'] = $this->upload->display_errors();
 
-			$this->load->view('addItemForm', $data);
+			
 		}
 		else {
-                    $cloned['title'] = $_POST['title'];
+                    
                     $tempo = $this->upload->data();
                     $cloned['photo']= $tempo['raw_name'];
-                    $cloned['price']=$_POST['price'];
-                    $cloned['seller_id'] = $_POST['seller_ID'];
-                    $cloned['category'] = $_POST['category'];
-                    
                     $configi['image_library'] = 'gd2';
                     $configi['source_image'] = $tempo['full_path'];
                     $configi['create_thumb'] = TRUE;
@@ -135,15 +131,12 @@ class Formval extends CI_controller
                     $this->load->library('image_lib', $configi);
 
                     $this->image_lib->resize(); 
-                    
-             /*       $configi['width'] = 300;
-                    $configi['height'] = 300;
-
-                    $this->load->library('image_lib', $configi);
-*/
-                    $this->image_lib->resize(); 
-                    
-                    
+                                       
+                }
+                    $cloned['title'] = $_POST['title'];                     
+                    $cloned['price']=$_POST['price'];
+                    $cloned['seller_id'] = $_POST['seller_ID'];
+                    $cloned['category'] = $_POST['category'];
                     
                     if (isset($_POST['auction']))
                         $cloned['auction'] = $_POST['auction'];
@@ -155,7 +148,7 @@ class Formval extends CI_controller
                     $this->items->addItemToDb($cloned, $clonedToDesc);
                     $data['upload_data'] = $this->upload->data();
                     $this->load->view("itemSuccess", $cloned);
-                }
+                
             
 	}
     }
