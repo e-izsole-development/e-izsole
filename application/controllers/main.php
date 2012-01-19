@@ -28,6 +28,7 @@ class main extends CI_Controller
         $this->load->model('user_data');
         $id = $this->user_data->getUserId($_POST["login"],$_POST["password"]);
         $this->session->set_userdata("eizsoleuser",$id);
+        $this->session->set_userdata("language",$this->userdata->getUserLanguage($id));
         if ($id!=null) $this->session->set_userdata("eizsoleusername",$_POST['login']);
         $this->index();
     }

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>e-izsole</title>
-        <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
+        <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css'); ?> />
 <body>
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -14,6 +14,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<?php $this->lang->load('main','EN');  ?>
 
     <div id="whole_page">
     <div id="top_bar">
@@ -23,15 +24,15 @@
 		<li>
                     <form method="POST" action="javascript:location.href=document.getElementById('profileDestination').value" id="profile">
                         <select id="profileDestination" onchange="document.forms['profile'].submit();">
-                            <option selected="selected" value=<?php echo current_url(); ?>>Profile</option>
-                            <option value=<?php echo base_url('user/editUser'); ?>>Edit my profile</option>
-                            <option value=<?php echo base_url('main/newItem'); ?>>Add Product</option>
+                            <option selected="selected" value=<?php echo current_url(); ?>> <?php echo $this->lang->line('profile'); ?></option>
+                            <option value=<?php echo base_url('user/editUser'); ?>><?php echo $this->lang->line('editmyprofile'); ?></option>
+                            <option value=<?php echo base_url('main/newItem'); ?>><?php echo $this->lang->line('addproduct'); ?></option>
                             <?php var_dump($userType); if ($userType =='a') { ?>
-                            <option value=<?php echo base_url('admin'); ?>>Admin</option>
+                            <option value=<?php echo base_url('admin'); ?>><?php echo $this->lang->line('admin'); ?></option>
                             <?php }?>
-                            <option value=<?php echo base_url('main/myProductForSail'); ?>>My Products</option>
-                            <option value=<?php echo base_url('main/lastTwenyViewed'); ?>>Last Viewed</option>
-                            <option value=<?php echo base_url('main/logout'); ?>>Logout</option>
+                            <option value=<?php echo base_url('main/myProductForSail'); ?>><?php echo $this->lang->line('myproducts'); ?></option>
+                            <option value=<?php echo base_url('main/lastTwenyViewed'); ?>><?php echo $this->lang->line('lastviewed'); ?></option>
+                            <option value=<?php echo base_url('main/logout'); ?>><?php echo $this->lang->line('logout'); ?></option>
                         </select>
                     </form>
                 
