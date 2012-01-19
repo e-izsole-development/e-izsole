@@ -42,12 +42,17 @@ class main extends CI_Controller
     {
         $this->load->model('items_data');
         $this->load->model('system_data');
-        
-        
+        $this->load->model('dataValidation');
+        $this->load->model('reports');
         $data = $this->prepareData();
-        $data['item'] = $this->items_data->getItemFullInfo($id);
-        
-        $this->load->view('item',$data);
+        if($this->dataValidation->productIDValidation($id)){
+            $data['item'] = $this->items_data->getItemFullInfo($id);
+            $this->reports->insertViwedProduct($this->session->userdata('eizsoleuser'), $id);
+            $this->load->view('item',$data);
+        }
+        else{
+            $this->load->view('error',$data);
+        }
     }
    
     function myProductForSail(){
