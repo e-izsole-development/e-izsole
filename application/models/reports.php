@@ -45,8 +45,6 @@ class reports extends CI_Model
         else{
             $this->db->where('user_id', $userID);
             $this->db->where('item_id', $itemID);
-            $this->load->helper('date');
-            date_default_timezone_set('Europe/Riga');
             $this->db->update('dbo_recently_watched', array('date' => date('Y-m-d H:i:s')));
         } 
     }

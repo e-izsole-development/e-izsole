@@ -51,6 +51,7 @@ class main extends CI_Controller
             $this->load->view('item',$data);
         }
         else{
+            $data['errors']= "This product does not exist!";
             $this->load->view('error',$data);
         }
     }
