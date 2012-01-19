@@ -18,7 +18,8 @@ class main extends CI_Controller
     {
         $data = $this->prepareData();
         $data["items"] = $this->items_data->getAllShortInfo();
-        $this->load->view('main',$data);
+        $this->load->view('fullMenu',$data);
+        $this->load->view('itemView',$data);
     }
     
     function login()
