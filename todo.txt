@@ -8,3 +8,4 @@
 4) в таблице dbo_item поле "winner" сделать, что можно нулл
 5) меняем тип поля Photo в таблице из блоб на варчар(255)
 6) поменять поле Username в dbo_users чтобы было уникальным 
+7) сделать в таблице dbo_recently_watched колонку date типа timestamp с значением по умолчанию CURRENT_TIMESTAMP 	
