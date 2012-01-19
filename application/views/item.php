@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>e-izsole</title>
         <link REL=StyleSheet HREF="/e-izsole-development/application/views/main.css"/>
+        <link REL=StyleSheet HREF="/e-izsole-development/application/views/item.css"/>
 <body>
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -87,8 +88,8 @@
                 <?php if ($item->photo==null) echo "<img src=\"" . base_url('images/nope.jpg') . ' "/>'; 
                 else echo '<a href="' . base_url('application/views/images/Uploads/' . $item->photo . '.jpg') . '" >' .
                         '<img src="' . base_url('application/views/images/Uploads/' . $item->photo . '_thumb.jpg') . '" /></a>'; ?> 
-                
             <h1><?php echo $item->title ?></h1>
+            <b><p id="itemPrice">Price: <?php echo number_format(($item->price * $currencyIndex[$this->session->userdata("eizsolecurr")]),2); echo " " . $this->session->userdata("eizsolecurr"); ?></p></b>
             <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
         </div>
         <div id="rightzone">

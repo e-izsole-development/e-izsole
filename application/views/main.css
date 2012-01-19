@@ -10,7 +10,7 @@ body
 
 #LoginDiv
 {
-    width : 15%
+    width : 15%;
     margin: 0px;
     margin-top: 15px;
     margin-right: 1%;
@@ -204,4 +204,10 @@ input#auction
 {
     width: 15%;
     position: absolute;
+}
+
+#itemPrice
+{
+    float:right;
+    margin-right:300px;
 }

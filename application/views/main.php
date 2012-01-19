@@ -29,10 +29,9 @@
                             <?php var_dump($userType); if ($userType =='a') { ?>
                             <option value=<?php echo base_url('admin'); ?>>Admin</option>
                             <?php }?>
-                            <option value=<?php echo base_url(); ?>>Last Seen</option>
-                            <option value=<?php echo base_url('main/logout'); ?>>Logout</option>
                             <option value=<?php echo base_url('main/myProductForSail'); ?>>My Products</option>
                             <option value=<?php echo base_url('main/lastTwenyViewed'); ?>>Last Viewed</option>
+                            <option value=<?php echo base_url('main/logout'); ?>>Logout</option>
                         </select>
                     </form>
                 
@@ -114,7 +113,7 @@
                 <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>
                 <div class="fb-like" data-href="<?php echo base_url('main/item/'.$item->id); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
                 <h4><?php echo $item->short_description ?></h4>
-                <p><?php echo ($item->price * $currencyIndex[$this->session->userdata("eizsolecurr")]); echo " " . $this->session->userdata("eizsolecurr");?> </p>
+                <b><p id="itemPrice"><?php echo number_format(($item->price * $currencyIndex[$this->session->userdata("eizsolecurr")]),2); echo " " . $this->session->userdata("eizsolecurr");?> </p></b>
             </div>
         </div>
         <?php endforeach;?>
