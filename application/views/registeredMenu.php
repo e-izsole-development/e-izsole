@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $PageName ?></title>
-        <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
+	<title>e-izsole</title>
+        <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css'); ?> />
 <body>
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -23,15 +23,15 @@
 		<li>
                     <form method="POST" action="javascript:location.href=document.getElementById('profileDestination').value" id="profile">
                         <select id="profileDestination" onchange="document.forms['profile'].submit();">
-                            <option selected="selected" value=<?php echo current_url(); ?>>Profile</option>
-                            <option value=<?php echo base_url('user/editUser'); ?>>Edit my profile</option>
-                            <option value=<?php echo base_url('main/newItem'); ?>>Add Product</option>
+                            <option selected="selected" value=<?php echo current_url(); ?>> <?php echo $this->lang->line('profile'); ?></option>
+                            <option value=<?php echo base_url('user/editUser'); ?>><?php echo $this->lang->line('editmyprofile'); ?></option>
+                            <option value=<?php echo base_url('main/newItem'); ?>><?php echo $this->lang->line('addproduct'); ?></option>
                             <?php var_dump($userType); if ($userType =='a') { ?>
-                            <option value=<?php echo base_url('admin'); ?>>Admin</option>
+                            <option value=<?php echo base_url('admin'); ?>><?php echo $this->lang->line('admin'); ?></option>
                             <?php }?>
-                            <option value=<?php echo base_url(); ?>>Last Seen</option>
-                            <option value=<?php echo base_url('main/logout'); ?>>Logout</option>
-                            <option value=<?php echo base_url('main/myProductForSail'); ?>>My Products</option>
+                            <option value=<?php echo base_url('main/myProductForSail'); ?>><?php echo $this->lang->line('myproducts'); ?></option>
+                            <option value=<?php echo base_url('main/lastTwenyViewed'); ?>><?php echo $this->lang->line('lastviewed'); ?></option>
+                            <option value=<?php echo base_url('main/logout'); ?>><?php echo $this->lang->line('logout'); ?></option>
                         </select>
                     </form>
                 
@@ -73,27 +73,6 @@
     
         <div id="logo">
             <a  href="<?php echo base_url('main'); ?>"><image src="<?php echo base_url('images/logo.jpg'); ?>"/></a>
-        </div>
-
-        
-     <div id="comixzone">
-            <?php echo form_open('main/search');?>
-            <input name="parameters" id="searchinput" type="text"/>
-            <input value="Find" type="submit"/>
-        </form>
-        <?php foreach ($items->result() as $item): ?>
-        <div class="item">
-            <img 
-                src="<?php if ($item->photo==null) echo base_url('images/nope.jpg'); else echo base_url('application/views/images/Uploads/' . $item->photo . '_thumb.jpg'); ?>" 
-                />
-            <div class="description">
-                <h3><?php echo anchor('main/item/' . $item->id, $item->title);?></h3>
-                <div class="fb-like" data-href="<?php echo base_url('main/item/'.$item->id); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
-                <h4><?php echo $item->short_description ?></h4>
-                <p><?php echo ($item->price * $currencyIndex[$this->session->userdata("eizsolecurr")]); echo " " . $this->session->userdata("eizsolecurr");?> </p>
-            </div>
-        </div>
-        <?php endforeach;?>
         </div>
     </div>
 </body>
