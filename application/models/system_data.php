@@ -33,6 +33,24 @@ class system_data extends CI_Model
         return $this->db->get('dbo_languages')->result();
     }
     
+    function getLanguageID($language)
+    {
+        $this->db->where('dbo_languages.title',$language);
+        $this->db->get('dbo_languages')->result();
+        foreach ($query->result() as $row){
+            $language = $row->id;
+        }
+        return $languageID;
+    }
+    
+    function updateLanguage($userid, $language)
+    {
+        $languageID=$this->getLanguageID($language);
+        $this->db->where('dbo_users.id',$userid);
+        
+        $this->db->update('dbo_users', array('dbo_users.language'=>$languageID));
+    }
+    
     function calculateCurrency()
     {
         $xml = file_get_contents('http://www.bank.lv/vk/xml.xml');
