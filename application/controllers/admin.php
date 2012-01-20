@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
  * To change this template, choose Tools | Templates
@@ -22,8 +22,17 @@ class admin extends CI_Controller
     
     function index()
     {
-        $data = $this->system_data->getStatistics();
-        $this->load->view('admin',$data);
+         $data = $this->prepareData();
+        if($data['userType']=='a'){
+            $this->load->model('system_data');
+            $result=$this->system_data->getStatistics();
+            $data['usersCount']=$result['usersCount'];
+            $data['itemsCount']=$result['itemsCount'];
+            $this->load->view('admin',$data);
+        }
+        else{
+            $this->load->view('index.html');
+        }
     }
     
     function changeUserType()

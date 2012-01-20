@@ -30,7 +30,7 @@
                             <option value=<?php echo base_url('user/editUser'); ?>><?php echo $menu['editmyprofile']; ?></option>
                             <option value=<?php echo base_url('main/newItem'); ?>><?php echo $menu['addproduct']; ?></option>
                             <?php  if ($userType =='a') { ?>
-                            <option value=<?php echo base_url('main/admin'); ?>><?php echo $menu['admin']; ?></option>
+                            <option value=<?php echo base_url('admin'); ?>><?php echo $menu['admin']; ?></option>
                             <?php }?>
                             <option value=<?php echo base_url('main/myProductForSail'); ?>><?php echo $menu['myproducts']; ?></option>
                             <option value=<?php echo base_url('main/lastTwenyViewed'); ?>><?php echo $menu['lastviewed']; ?></option>
