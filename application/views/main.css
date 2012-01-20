@@ -211,3 +211,7 @@ input#auction
     float:right;
     margin-right:300px;
 }
+p#error
+{
+    color: red;
+}
