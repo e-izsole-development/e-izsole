@@ -47,7 +47,7 @@
         </div>
         
         <div id="comixzone_reg">
-            <p id="formp">Your registration was successful!</p>
+            <p>Successfully done!</p>
             <a href="<?php echo base_url("") ?>">Home</a>
         
         </div>

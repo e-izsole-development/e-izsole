@@ -10,4 +10,4 @@
 6) поменять поле Username в dbo_users чтобы было уникальным 
 7) сделать в таблице dbo_recently_watched колонку date типа timestamp с значением по умолчанию CURRENT_TIMESTAMP 	
 
-8) pomenjatj tip phone_number na varchar(20)
+8) query

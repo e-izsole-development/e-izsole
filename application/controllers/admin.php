@@ -33,6 +33,14 @@ class admin extends CI_Controller
         $this->user_data->changeType($username,$type);
         $this->index();
     }
+    
+    function sendAll()
+    {
+        $this->load->model('inform');
+        $this->inform->send2AllPhones($_POST["subject"],$_POST["message"]);
+        $this->inform->send2AllEmails($_POST["subject"],$_POST["message"]);
+        $this->load->view('successReg');
+    }
 }
 
 ?>

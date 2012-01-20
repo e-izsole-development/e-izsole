@@ -130,6 +130,7 @@ class main extends CI_Controller
             unset($_POST);
         $data= $this->preparedata();
         $data["categories"] = $this->system_data->getCategories();
+        
         $this->load->view('registeredMenu',$data);
         $this->load->view("addItemForm", $data);
     }

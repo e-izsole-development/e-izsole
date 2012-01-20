@@ -86,6 +86,18 @@
             <input value="Change" type="submit"/>
             </form>
         </p>
+        <?php echo form_fieldset();?>
+        <p>Send message to all users:</p>
+        <?php echo form_open('admin/sendall') ?>
+        <p id="subjectBox">
+            Subject: <input name="subject" type="text"/>
+                
+        </p>
+        <p id="messageBox">
+            Message: <input name="message" type="text" />
+        </p>
+        <input value="Send" type="submit"/>
+        <?php echo form_fieldset_close(); ?>
         </div>
     </div>
 </body>

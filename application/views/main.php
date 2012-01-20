@@ -1,7 +1,5 @@
     <div id="comixzone">
         
-        <?php echo anchor("inform/mail", "get mail") ?>
-        
         <?php echo form_open('main/search');?>
         <input name="parameters" id="searchinput" type="text"/>
         <input value="Find" type="submit"/>

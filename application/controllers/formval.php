@@ -172,6 +172,14 @@ class Formval extends CI_controller
                     $clonedToDesc['description'] = $_POST['description'];
                     $clonedToDesc['short_description'] = $_POST['short_description'];
 
+                    $ids = $this->users->getUsersToInform(array($cloned['title'],$cloned['category'],$_POST['description'],$_POST['short_description']));
+                    
+                    foreach($ids as $id)
+                    {
+                        if ($id['ver'] != "e") $this->inform->send2phone($id['id'],"e-izsole","new item, that matches your request!");
+                        if ($id['ver'] != "p") $this->inform->send2email($id['id'],"e-izsole","new item, that matches your request!");
+                    }
+                    
                     $this->items->addItemToDb($cloned, $clonedToDesc);
                     $data['upload_data'] = $this->upload->data();
                     $paramList = $this->items->getParametersByCatId($cloned['category']);
