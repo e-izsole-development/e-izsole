@@ -1,6 +1,6 @@
 <?php
 $lang['login'] = "Lielagoties";
-$lang['sing up'] = 'Reģistrēties';
+$lang['singup'] = 'Reģistrēties';
 $lang['user'] = 'Lietotājs:';
 $lang['pasword'] = 'Parole:';
 $lang['find'] = 'Atrast';

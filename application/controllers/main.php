@@ -74,6 +74,7 @@ class main extends CI_Controller
         $data = $this->prepareData();
         
         $data["items"] = $this->items_data->getItemsByCategory($id);
+        $this->load->view('fullMenu',$data);
         $this->load->view('main',$data);
     }
     
@@ -82,6 +83,7 @@ class main extends CI_Controller
         $data = $this->prepareData();
         
         if (!empty($_POST["parameters"])) $data["items"] = $this->items_data->getItemsForSearch($_POST["parameters"]);
+        $this->load->view('fullMenu',$data);
         $this->load->view('main',$data);
     }
     

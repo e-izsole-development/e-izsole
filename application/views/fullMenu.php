@@ -87,13 +87,13 @@
    <?php if ($this->session->userdata("eizsoleuser")==null){ ?>
     <div id="LoginDiv">
         <?php echo form_open('main/login');?>
-            <p>Login:</p>
+            <p> <?php echo $this->lang->line('user'); ?></p>
             <p><input name="login" id="login" type="text"/></p>
-            <p>Pasword:</p>
+            <p><?php echo $this->lang->line('pasword'); ?></p>
             <p><input name="password" id="password" type="password"/></p>
-            <p><input type="submit" value="Login"> </p>
+            <p><input type="submit" value="<?php echo $this->lang->line('login'); ?>"> </p>
             <!-- <button onClick="Location: href = <?php //echo base_url('../user/goToRegView'); ?>">Sign up</button> -->
-            <a href ="<?php echo base_url('user/register') ?>">Sign up</a>
+            <a href ="<?php echo base_url('user/register') ?>"><?php echo $this->lang->line('singup'); ?></a>
         </form>
     </div> 
    <?php } ?>
