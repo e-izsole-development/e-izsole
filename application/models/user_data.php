@@ -111,5 +111,20 @@ class User_data extends CI_Model
         $t = $t[0];
         return $t;
     }
+    
+    function getVerificationStatus($id)
+    {
+        $this->db->select('verified FROM dbo_users WHERE id='.$id);
+        $t = $this->db->get()->result();
+        $t = $t[0];
+        if ($t->verified == null) return 'n';
+        return $t->verified;
+    }
+    
+    function setVerificationStatus($id,$s)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('dbo_users',array('verified' => $s));
+    }
 }
 ?>

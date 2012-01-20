@@ -174,8 +174,16 @@ class Formval extends CI_controller
 
                     $this->items->addItemToDb($cloned, $clonedToDesc);
                     $data['upload_data'] = $this->upload->data();
+                    $paramList = $this->items->getParametersByCatId($cloned['category']);
+                    if (empty($paramList))
+                    {    
                     $this->load->view("itemSuccess", $cloned);
-                
+                    } 
+                    else
+                    {
+                    $data['parameters'] = $paramList;
+                    $this->load->view('enterParam', $data);
+                    }
             
 	}
     }
@@ -187,14 +195,45 @@ class Formval extends CI_controller
     
     function checkEmailCode()
     {
-        var_dump($this->session->userdata('emailvercode'));
-        var_dump($_POST['code']);
-        if ($_POST['code'] == $this->session->userdata('emailvercode')) echo 'good'; else echo 'bad';
+        if ($_POST['code'] == $this->session->userdata('emailvercode'))
+        {
+            $s = $this->users->getVerificationStatus($this->session->userdata('eizsoleuser'));
+            if ($s == 'p') $this->users->setVerificationStatus($this->session->userdata('eizsoleuser'),'a');
+                else $this->users->setVerificationStatus($this->session->userdata('eizsoleuser'),'e');
+        }
+        $this->load->view('successReg');
     }
-    
+    function checkPhoneCode()
+    {
+        if ($_POST['code'] == $this->session->userdata('mobilevercode')) 
+        {
+            $s = $this->users->getVerificationStatus($this->session->userdata('eizsoleuser'));
+            if ($s == 'e') $this->users->setVerificationStatus($this->session->userdata('eizsoleuser'),'a');
+                else $this->users->setVerificationStatus($this->session->userdata('eizsoleuser'),'p');
+        }
+        $this->load->view('successReg');
+    }
+    //
     function generateCode()
     {
         return rand(10000,99999);
+    }
+    function enterParameters()
+    {
+        $param = $_POST;
+        $lastID = $this->items->getLastItemId();
+        $arkeys = array_keys($param);
+        $counter=0;
+        foreach ($param as $one)
+        {
+            
+            $finalData['parameter'] = $arkeys[$counter];
+            
+            $finalData['value'] = $param[$arkeys[$counter]];
+            $counter += 1;
+            $this->items->insertParam($finalData, $lastID);
+        }
+        $this->load->view('itemSuccess');
     }
 }
 ?>

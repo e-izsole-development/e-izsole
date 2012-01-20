@@ -57,6 +57,7 @@ class main extends CI_Controller
         $this->load->model('dataValidation');
         $this->load->model('reports');
         $data = $this->prepareData();
+        $data['auction'] = $this->items_data->ifAuction($id);
         if($this->dataValidation->productIDValidation($id)){
             $data['item'] = $this->items_data->getItemFullInfo($id);
             $this->reports->insertViwedProduct($this->session->userdata('eizsoleuser'), $id);
@@ -119,7 +120,7 @@ class main extends CI_Controller
         }
         if ($this->session->userdata("eizsoleuser")!=null) $data["userType"] = $this->user_data->getUserType($this->session->userdata("eizsoleuser"));
         else $data["userType"] = 'n';
-        
+        if ($this->session->userdata('eizsoleuser')!=null) $data['verificationStatus'] = $this->user_data->getVerificationStatus($this->session->userdata('eizsoleuser'));
         $data["currencyIndex"] = $currencyIndex;
         return $data;
     }
@@ -127,6 +128,7 @@ class main extends CI_Controller
     {
         if (isset($_POST))
             unset($_POST);
+        $data= $this->preparedata();
         $data["categories"] = $this->system_data->getCategories();
         $this->load->view('registeredMenu',$data);
         $this->load->view("addItemForm", $data);
