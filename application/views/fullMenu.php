@@ -51,7 +51,7 @@
         <div id="top_bar_right">
             <ul>
             <li>
-               <form method="POST" action=<?php echo current_url(); ?> id="lang">
+               <form method="POST" action=<?php echo base_url('main/upadteLanguage');  ?> id="lang">
                     <select name="languagechoise" id='languagechoise' onchange="document.forms['lang'].submit();">
                         <?php foreach ($languages as $language): ?>
                         <option value=<?php echo $language->title . " "; ?> <?php if ($language->title == $this->session->userdata("language")) { ?>selected='selected'<?php }?> >  <?php  echo $language->title;?> </option>
