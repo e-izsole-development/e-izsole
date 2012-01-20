@@ -23,15 +23,18 @@
 		<li>
                     <form method="POST" action="javascript:location.href=document.getElementById('profileDestination').value" id="profile">
                         <select id="profileDestination" onchange="document.forms['profile'].submit();">
-                            <option selected="selected" value=<?php echo current_url(); ?>> <?php echo $this->lang->line('profile'); ?></option>
-                            <option value=<?php echo base_url('user/editUser'); ?>><?php echo $this->lang->line('editmyprofile'); ?></option>
-                            <option value=<?php echo base_url('main/newItem'); ?>><?php echo $this->lang->line('addproduct'); ?></option>
+                            <option selected="selected" value=<?php echo current_url(); ?>> <?php echo $menu['profile']; ?></option>
+                            <?php if ($verificationStatus != 'a') { ?>
+                            <option value=<?php echo base_url('formval/inputVerCode') ?>>Enter Verification codes</option>
+                            <?php } ?>
+                            <option value=<?php echo base_url('user/editUser'); ?>><?php echo $menu['editmyprofile']; ?></option>
+                            <option value=<?php echo base_url('main/newItem'); ?>><?php echo $menu['addproduct']; ?></option>
                             <?php var_dump($userType); if ($userType =='a') { ?>
-                            <option value=<?php echo base_url('admin'); ?>><?php echo $this->lang->line('admin'); ?></option>
+                            <option value=<?php echo base_url('admin'); ?>><?php echo $menu['admin']; ?></option>
                             <?php }?>
-                            <option value=<?php echo base_url('main/myProductForSail'); ?>><?php echo $this->lang->line('myproducts'); ?></option>
-                            <option value=<?php echo base_url('main/lastTwenyViewed'); ?>><?php echo $this->lang->line('lastviewed'); ?></option>
-                            <option value=<?php echo base_url('main/logout'); ?>><?php echo $this->lang->line('logout'); ?></option>
+                            <option value=<?php echo base_url('main/myProductForSail'); ?>><?php echo $menu['myproducts']; ?></option>
+                            <option value=<?php echo base_url('main/lastTwenyViewed'); ?>><?php echo $menu['lastviewed']; ?></option>
+                            <option value=<?php echo base_url('main/logout'); ?>><?php echo $menu['logout']; ?></option>
                         </select>
                     </form>
                 
@@ -47,10 +50,10 @@
         <div id="top_bar_right">
             <ul>
             <li>
-                <form method="POST" action=<?php echo current_url(); ?> id="lang">
-                    <select name="currency" onchange="document.forms['curr'].submit();">
+                <form method="POST" action=<?php echo base_url('main/upadteLanguage');  ?> id="lang">
+                    <select name="languagechoise" id='languagechoise' onchange="document.forms['lang'].submit();">
                         <?php foreach ($languages as $language): ?>
-                        <option value=<?php echo $language->id . " "; ?> <?php if ($language->title == $this->session->userdata("language")) { ?>selected='selected'<?php }?> > <?php echo $language->title;?> </option>
+                        <option value=<?php echo $language->title . " "; ?> <?php if ($language->title == $this->session->userdata("language")) { ?>selected='selected'<?php }?> >  <?php  echo $language->title;?> </option>
                         <?php endforeach; ?>
                     </select>
                 </form>
