@@ -26,7 +26,7 @@ class items_data extends CI_Model
     
     function getItemFullInfo($id)
     {
-        $this->db->select(" i.title, i.photo, i.auction, i.price, d.description FROM dbo_items i, dbo_item_description d WHERE (i.id=d.id) AND (i.id=$id)"); 
+        $this->db->select("i.id, i.title, i.photo, i.auction, i.price, d.description FROM dbo_items i, dbo_item_description d WHERE (i.id=d.id) AND (i.id=$id)"); 
         $data = $this->db->get()->result();
         $data = $data[0];
         $this->db->select("pv.value, p.title FROM dbo_parameters p, dbo_parameter_values pv WHERE ((pv.item_id=$id) AND (pv.parameter=p.id))");
@@ -59,6 +59,23 @@ class items_data extends CI_Model
         $this->db->insert('dbo_item_description', $itemDesc);
         $this->db->insert('dbo_items', $item);
     }
+    
+    function setNewBid($bidData)
+    {
+        $data['price'] = $bidData['price'];
+        $data['winner'] = $bidData['winner'];
+        $this->db->from('dbo_items');
+        $this->db->where('id = ' . $bidData['id']);
+//$quary = 'SELECT id, price, winner FROM dbo_items WHERE id = ' . $itemID;
+        
+        $this->db->select('*');
+        //$this->db->get('dbo_items');
+        //$this->db->get('dbo_items');
+        
+        $this->db->update('dbo_items', $data);
+        
+    }
+
 }
 
 ?>

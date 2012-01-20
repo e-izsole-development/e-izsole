@@ -11,6 +11,7 @@ class Formval extends CI_controller
         $this->load->model('user_data', 'users');
         $this->load->model('items_data', 'items');
         $this->load->model('system_data');
+        $this->load->model('inform');
         
         $config['upload_path'] = './application/views/images/Uploads/';
         $config['allowed_types'] = 'jpg';
@@ -55,7 +56,20 @@ class Formval extends CI_controller
             unset($cloned["repassword"]);
             $data["cloned"] = $cloned;
             $this->users->registerUser($cloned);
+            //run verifications
+            $id = $this->users->getUserId1($cloned["username"]);
+            if ($cloned['phone_number']!=null)
+            {
+                $this->session->set_userdata('mobilevercode',$this->generateCode());
+                $this->inform->send2phone($id,'verification code',$this->session->userdata('mobilevercode'));
+            }
+            if ($cloned['e_mail']!=null)
+            {
+                $this->session->set_userdata('emailvercode',$this->generateCode());
+                $this->inform->send2email($id,'verification code',$this->session->userdata('emailvercode'));
+            }
             $this->load->view("successReg", $data);
+            
 	}
 	
     }
@@ -82,7 +96,7 @@ class Formval extends CI_controller
 	}
 	else
 	{
-            $cloned = $_POST;
+            $cloned = $_POST; 
             unset($cloned["repassword"]);
             $data["cloned"] = $cloned;
             if (!empty($_POST["newpassword"]))
@@ -90,7 +104,20 @@ class Formval extends CI_controller
                 $cloned["password"] = $cloned["newpassword"];
             }
             unset($cloned["newpassword"]);
+            $me = $this->users->getMailPhone($this->session->userdata("eizsoleuser"));
+            $phoneChanged = ($cloned['phone_number']!=$me->phone_number);
+            $emailChanged = ($cloned['e_mail']!=$me->e_mail);
             $this->users->editUser($cloned);
+            if  ($phoneChanged)
+            {
+                $this->session->set_userdata('mobilevercode',$this->generateCode());
+                $this->inform->send2phone($this->session->userdata("eizsoleuser"),'verification code',$this->session->userdata('mobilevercode'));
+            }
+            if ($emailChanged)
+            {
+                $this->session->set_userdata('emailvercode',$this->generateCode());
+                $this->inform->send2email($this->session->userdata("eizsoleuser"),'verification code',$this->session->userdata('mobilevercode'));
+            }
             $this->load->view("successReg", $data);
 	}
     }
@@ -153,5 +180,9 @@ class Formval extends CI_controller
 	}
     }
     
+    function generateCode()
+    {
+        return rand(10000,99999);
+    }
 }
 ?>
