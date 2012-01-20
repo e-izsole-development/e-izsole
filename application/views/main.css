@@ -19,7 +19,7 @@ body a:visited
 }
 body a:hover
 {
-    color:white;
+    color: #e0dfe2;
     text-decoration: underline;
 }
 
@@ -135,8 +135,8 @@ body a:hover
     border-width: 2px;
     border-color: lightgray;
     /*background-image:  url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");*/
-    background-image: url("./images/test.jpg");
-    background-position: -350px -10px; 
+    background-image: url("./images/test2.jpg");
+    /*background-position: -350px -10px;*/ 
     border-radius: 5px;
 }
 
@@ -186,7 +186,7 @@ body a:hover
     border-style: dotted;
     border-width: 4px;
     border-color: lightgray;
-    background-image:  url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");
+    background-image:  url("./images/test.jpg");
     background-position: -350px -10px;
   
 }
