@@ -24,13 +24,15 @@
                 </tr>
             <?php endforeach; ?>
             </table>
-        </div>
-        <?php echo form_open('main/bidVal/'.$item->id); ?>
+        </div><br/>
+        <?php if ($auction){?>
+           <?php echo form_open('main/bidVal/'.$item->id); ?>
                <p>Place new bid:</p>
                <?php if (isset($bidError))
                    echo '<p id="error">' . $bidError . '</p>';?>
                <input name="old_bid" value="<?php echo number_format(($item->price * $currencyIndex[$this->session->userdata("eizsolecurr")]),2); ?>" type="hidden"/>
                <input name="new_bid" id="new_bid" size ="10" type="text"/>
                <input type="submit" value="Confirm"/>
+               <?php } ?>
            </form>
     </div>

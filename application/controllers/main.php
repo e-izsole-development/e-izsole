@@ -57,6 +57,7 @@ class main extends CI_Controller
         $this->load->model('dataValidation');
         $this->load->model('reports');
         $data = $this->prepareData();
+        $data['auction'] = $this->items_data->ifAuction($id);
         if($this->dataValidation->productIDValidation($id)){
             $data['item'] = $this->items_data->getItemFullInfo($id);
             $this->reports->insertViwedProduct($this->session->userdata('eizsoleuser'), $id);
@@ -127,6 +128,7 @@ class main extends CI_Controller
     {
         if (isset($_POST))
             unset($_POST);
+        $data= $this->preparedata();
         $data["categories"] = $this->system_data->getCategories();
         $this->load->view('registeredMenu',$data);
         $this->load->view("addItemForm", $data);
@@ -138,6 +140,15 @@ class main extends CI_Controller
         $data['PageName']='E-izsole: Last viewed';
         $this->load->view('registeredMenu',$data);
         $this->load->view('main',$data);
+    }
+    
+    function upadteLanguage($lang){
+        $this->session->set_userdata("language",$lang);
+        If($this->session->userdata("eizsolecurr")!=null){
+            $this->load->model('system_data');
+            $this->system_data->updateLanguage($this->session->userdata("eizsolecurr"));
+        }
+        $this->index();
     }
     
     function bidVal($id)

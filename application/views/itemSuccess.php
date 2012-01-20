@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>E-izsole: Reģistrācija</title>
+	<title>E-izsole: Successfully added</title>
         <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
 <body>
     

@@ -174,8 +174,16 @@ class Formval extends CI_controller
 
                     $this->items->addItemToDb($cloned, $clonedToDesc);
                     $data['upload_data'] = $this->upload->data();
+                    $paramList = $this->items->getParametersByCatId($cloned['category']);
+                    if (empty($paramList))
+                    {    
                     $this->load->view("itemSuccess", $cloned);
-                
+                    } 
+                    else
+                    {
+                    $data['parameters'] = $paramList;
+                    $this->load->view('enterParam', $data);
+                    }
             
 	}
     }
@@ -209,6 +217,23 @@ class Formval extends CI_controller
     function generateCode()
     {
         return rand(10000,99999);
+    }
+    function enterParameters()
+    {
+        $param = $_POST;
+        $lastID = $this->items->getLastItemId();
+        $arkeys = array_keys($param);
+        $counter=0;
+        foreach ($param as $one)
+        {
+            
+            $finalData['parameter'] = $arkeys[$counter];
+            
+            $finalData['value'] = $param[$arkeys[$counter]];
+            $counter += 1;
+            $this->items->insertParam($finalData, $lastID);
+        }
+        $this->load->view('itemSuccess');
     }
 }
 ?>
