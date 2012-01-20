@@ -46,7 +46,7 @@ class main extends CI_Controller
     {
         $this->session->unset_userdata('eizsoleuser');
         $this->session->unset_userdata('eizsoleusername');
-        $this->session->unset_userdata('language');
+        $this->session->set_userdata("language","LV");
         $this->index();
     }
     
@@ -140,13 +140,13 @@ class main extends CI_Controller
         $this->load->view('main',$data);
     }
     
-    function upadteLanguage($lang){
-        $this->session->set_userdata("language",$lang);
+    function upadteLanguage(){
+        $this->session->set_userdata("language",$_POST['languagechoise']);
         If($this->session->userdata("eizsolecurr")!=null){
             $this->load->model('system_data');
-            $this->system_data->updateLanguage($this->session->userdata("eizsolecurr"));
+            $this->system_data->updateLanguage($this->session->userdata("eizsolecurr"),$this->session->userdata("language"));
         }
-        $this->index();
+        //$this->index();
     }
     
     function bidVal($id)
