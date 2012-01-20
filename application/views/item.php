@@ -15,7 +15,8 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-
+<?php //var_dump($test); 
+if(isset($success)) echo $success; ?>
     <div id="whole_page">
     <div id="top_bar">
         <div id="top_bar_left">
@@ -90,7 +91,7 @@
                         '<img src="' . base_url('application/views/images/Uploads/' . $item->photo . '_thumb.jpg') . '" /></a>'; ?> 
             <h1><?php echo $item->title ?></h1>
             <b><p id="itemPrice">Price: <?php echo number_format(($item->price * $currencyIndex[$this->session->userdata("eizsolecurr")]),2); echo " " . $this->session->userdata("eizsolecurr"); ?></p></b>
-            <div class="fb-like" data-href="http://localhost/eizsole" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
+            <div class="fb-like" data-href="<?php echo base_url('main/item/'.$item->id); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
         </div>
         <div id="rightzone">
             <p><?php echo $item->description ?></p>
@@ -105,7 +106,17 @@
                     </td>
                 </tr>
             <?php endforeach; ?>
-            </table>
+            </table><br/>
+            <?php if ($auction){?>
+           <?php echo form_open('main/bidVal/'.$item->id); ?>
+               <p>Place new bid:</p>
+               <?php if (isset($bidError))
+                   echo '<p id="error">' . $bidError . '</p>';?>
+               <input name="old_bid" value="<?php echo number_format(($item->price * $currencyIndex[$this->session->userdata("eizsolecurr")]),2); ?>" type="hidden"/>
+               <input name="new_bid" id="new_bid" size ="10" type="text"/>
+               <input type="submit" value="Confirm"/>
+               <?php } ?>
+           </form>
         </div>
     </div>
     </div>

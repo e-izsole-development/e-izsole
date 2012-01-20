@@ -6,10 +6,13 @@ class main extends CI_Controller
     {
         parent::__construct();
         $this->load->library('session');
+        $this->load->library('form_validation');
         $this->load->helper('form');
         $this->load->model('items_data');
         $this->load->model('system_data');
         $this->load->model('user_data');
+        $this->load->model('dataValidation');
+        $this->load->model('reports');
         $this->load->helper('url');
         if ($this->session->userdata("eizsolecurr")==null) $this->session->set_userdata("eizsolecurr","LVL");
     }
@@ -40,14 +43,12 @@ class main extends CI_Controller
     
     function item($id)
     {
-        $this->load->model('items_data');
-        $this->load->model('system_data');
-        $this->load->model('dataValidation');
-        $this->load->model('reports');
         $data = $this->prepareData();
         if($this->dataValidation->productIDValidation($id)){
             $data['item'] = $this->items_data->getItemFullInfo($id);
+            $data['bidder'] = $this->session->userdata('eizsoleuser');
             $this->reports->insertViwedProduct($this->session->userdata('eizsoleuser'), $id);
+            $data['auction']=$this->items_data->ifAuction($id);
             $this->load->view('item',$data);
         }
         else{
@@ -114,6 +115,47 @@ class main extends CI_Controller
         $data['items']=$this->reports->findLastViwedByUserID($this->session->userdata('eizsoleuser'));   
         $data['PageName']='E-izsole: Last viewed';
         $this->load->view('report',$data);
+    }
+    
+    function bidVal($id)
+    {
+       
+        $this->form_validation->set_rules('new_bid', 'New bid', 'decimal|required');
+        $newBid = $_POST['new_bid'];
+        $oldBid = $_POST['old_bid'];
+        $bidder = $this->session->userdata('eizsoleuser');
+        $bid['price'] = $newBid;
+        $bid['id'] = $id;;
+        $bid['winner'] = $bidder;
+        if ($this->form_validation->run() == FALSE)
+	{
+            $data = $this->preparedata();
+            $data['bidError'] = 'New bid is required and must be decimal!  (example: 5.00, 4.20, 3.12)';
+            $data['item'] = $this->items_data->getItemFullInfo($id);
+            $this->load->view('item',$data);
+	}
+        else
+        {
+            
+            
+            if ($newBid > $oldBid) 
+            {
+                $this->items_data->setNewBid($bid);
+                $data = $this->preparedata();
+                $data['test'] = array($id, $newBid, $bidder);
+                $data['item'] = $this->items_data->getItemFullInfo($id);
+                $data['success'] = '<script> alert("Your bid( '. $newBid . ' ) was successfully added")</script>';
+                $this->load->view('item',$data);
+            }
+            else 
+            {
+                
+                $data = $this->preparedata();
+                $data['bidError'] = 'New bid must be higher than old bid';
+                $data['item'] = $this->items_data->getItemFullInfo($id);
+                $this->load->view('item',$data);
+            }
+        }
     }
     
 }
