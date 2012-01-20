@@ -47,11 +47,11 @@
         <div id="top_bar_right">
             <ul>
             <li>
-                <form method="POST" action=<?php echo current_url(); ?> id="lang">
-                    <select name="language" onchange="document.forms['lang'].submit();">
-                        <option value="1">LV</option>
-                        <option value="2">EN</option>
-                        <option value="3">RU</option>
+                <form method="POST" action=<?php echo language_url(); ?> id="lang">
+                    <select name="currency" onchange="document.forms['curr'].submit();">
+                        <?php foreach ($languages as $language): ?>
+                        <option value=<?php echo $language->id . " "; ?> <?php if ($language->title == $this->session->userdata("language")) { ?>selected='selected'<?php }?> > <?php echo $language->title;?> </option>
+                        <?php endforeach; ?>
                     </select>
                 </form>
             </li>
