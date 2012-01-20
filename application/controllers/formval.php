@@ -11,6 +11,7 @@ class Formval extends CI_controller
         $this->load->model('user_data', 'users');
         $this->load->model('items_data', 'items');
         $this->load->model('system_data');
+        $this->load->model('inform');
         
         $config['upload_path'] = './application/views/images/Uploads/';
         $config['allowed_types'] = 'jpg';
@@ -55,7 +56,20 @@ class Formval extends CI_controller
             unset($cloned["repassword"]);
             $data["cloned"] = $cloned;
             $this->users->registerUser($cloned);
+            //run verifications
+            $id = $this->users->getUserId1($cloned["username"]);
+            if ($cloned['phone_number']!=null)
+            {
+                $this->session->set_userdata('mobilevercode',$this->generateCode());
+                $this->inform->send2phone($id,'verification code',$this->session->userdata('mobilevercode'));
+            }
+            if ($cloned['e_mail']!=null)
+            {
+                $this->session->set_userdata('emailvercode',$this->generateCode());
+                $this->inform->send2email($id,'verification code',$this->session->userdata('emailvercode'));
+            }
             $this->load->view("successReg", $data);
+            
 	}
 	
     }
@@ -82,7 +96,7 @@ class Formval extends CI_controller
 	}
 	else
 	{
-            $cloned = $_POST;
+            $cloned = $_POST; 
             unset($cloned["repassword"]);
             $data["cloned"] = $cloned;
             if (!empty($_POST["newpassword"]))
@@ -90,7 +104,20 @@ class Formval extends CI_controller
                 $cloned["password"] = $cloned["newpassword"];
             }
             unset($cloned["newpassword"]);
+            $me = $this->users->getMailPhone($this->session->userdata("eizsoleuser"));
+            $phoneChanged = ($cloned['phone_number']!=$me->phone_number);
+            $emailChanged = ($cloned['e_mail']!=$me->e_mail);
             $this->users->editUser($cloned);
+            if  ($phoneChanged)
+            {
+                $this->session->set_userdata('mobilevercode',$this->generateCode());
+                $this->inform->send2phone($this->session->userdata("eizsoleuser"),'verification code',$this->session->userdata('mobilevercode'));
+            }
+            if ($emailChanged)
+            {
+                $this->session->set_userdata('emailvercode',$this->generateCode());
+                $this->inform->send2email($this->session->userdata("eizsoleuser"),'verification code',$this->session->userdata('mobilevercode'));
+            }
             $this->load->view("successReg", $data);
 	}
     }
@@ -102,7 +129,9 @@ class Formval extends CI_controller
 	$this->form_validation->set_rules('short_description', 'Short description', 'required|xss_clean');
 	$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
         $this->form_validation->set_rules('price', 'Price', 'required|xss_clean');
-    
+        //$this->form_validation->set_rules('termsAgreement[]', 'Terms and Agreement', 'required');
+        
+
 	if ($this->form_validation->run() == FALSE)
 	{
             $this->load->view('addItemForm', $data);
@@ -115,10 +144,8 @@ class Formval extends CI_controller
 
 			
 		}
-                
 		else {
                     
-                    echo "<p>shit</p>";
                     $tempo = $this->upload->data();
                     $cloned['photo']= $tempo['raw_name'];
                     $configi['image_library'] = 'gd2';
@@ -137,47 +164,25 @@ class Formval extends CI_controller
                     $cloned['price']=$_POST['price'];
                     $cloned['seller_id'] = $_POST['seller_ID'];
                     $cloned['category'] = $_POST['category'];
+                    
                     if (isset($_POST['auction']))
                         $cloned['auction'] = $_POST['auction'];
                         else $cloned['auction'] = 0;
-                    
-                    
+
                     $clonedToDesc['description'] = $_POST['description'];
                     $clonedToDesc['short_description'] = $_POST['short_description'];
 
                     $this->items->addItemToDb($cloned, $clonedToDesc);
                     $data['upload_data'] = $this->upload->data();
-                    $paramList = $this->items->getParametersByCatId($cloned['category']);
-                    if (!(isset($paramList)))
-                    {    
                     $this->load->view("itemSuccess", $cloned);
-                    } 
-                    else
-                    {
-                    $data['parameters'] = $paramList;
-                    $this->load->view('enterParam', $data);
-                    }
                 
-                }
+            
 	}
-    function enterParameters()
-    {
-        $param = $_POST;
-        $lastID = $this->items->getLastItemId();
-        $arkeys = array_keys($param);
-        $counter=0;
-        foreach ($param as $one)
-        {
-            
-            $finalData['parameter'] = $arkeys[$counter];
-            
-            $finalData['value'] = $param[$arkeys[$counter]];
-            $counter += 1;
-            $this->items->insertParam($finalData, $lastID);
-        }
-        $this->load->view('itemSuccess');
     }
     
-    
+    function generateCode()
+    {
+        return rand(10000,99999);
+    }
 }
 ?>

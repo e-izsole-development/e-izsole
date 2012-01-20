@@ -85,7 +85,31 @@ class User_data extends CI_Model
     
     function editUser($regData)
     {
-        $this->db->insert('dbo_users', $regData);
+        $this->db->where('id',$this->session->userdata("eizsoleuser"));
+        $this->db->update('dbo_users', $regData);
+    }
+    
+    function getUserLanguage($id){
+        $this->db->from('dbo_users');
+        $this->db->join('dbo_languages', 'dbo_users.language=dbo_languages.id');
+        $this->db->where('dbo_users.id', $id);
+        $this->db->select('dbo_languages.title');
+        $query = $this->db->get();
+        foreach ($query->result() as $row){
+            $language = $row->title;
+        }
+        return $language;
+    }
+    
+    
+    function getMailPhone($id)
+    {
+        
+        $this->db->select('phone_number , mobile_operator , e_mail FROM dbo_users WHERE id = '.$id);
+        
+        $t = $this->db->get()->result();
+        $t = $t[0];
+        return $t;
     }
 }
 ?>
