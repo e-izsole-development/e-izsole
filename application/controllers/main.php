@@ -120,7 +120,7 @@ class main extends CI_Controller
         }
         if ($this->session->userdata("eizsoleuser")!=null) $data["userType"] = $this->user_data->getUserType($this->session->userdata("eizsoleuser"));
         else $data["userType"] = 'n';
-        
+        if ($this->session->userdata('eizsoleuser')!=null) $data['verificationStatus'] = $this->user_data->getVerificationStatus($this->session->userdata('eizsoleuser'));
         $data["currencyIndex"] = $currencyIndex;
         return $data;
     }

@@ -25,6 +25,9 @@
                     <form method="POST" action="javascript:location.href=document.getElementById('profileDestination').value" id="profile">
                         <select id="profileDestination" onchange="document.forms['profile'].submit();">
                             <option selected="selected" value=<?php echo current_url(); ?>> <?php echo $menu['profile']; ?></option>
+                            <?php if ($verificationStatus != 'a') { ?>
+                            <option value=<?php echo base_url('formval/inputVerCode') ?>>Enter Verification codes</option>
+                            <?php } ?>
                             <option value=<?php echo base_url('user/editUser'); ?>><?php echo $menu['editmyprofile']; ?></option>
                             <option value=<?php echo base_url('main/newItem'); ?>><?php echo $menu['addproduct']; ?></option>
                             <?php var_dump($userType); if ($userType =='a') { ?>
