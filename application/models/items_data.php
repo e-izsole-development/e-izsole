@@ -96,13 +96,11 @@ class items_data extends CI_Model
         $this->db->select('id FROM dbo_items');
         $rows = $this->db->get()->result();
         $last = 0;
-        var_dump($rows);
         foreach ($rows as $row)
         {
             if($row->id > $last)
                 $last = $row->id;
         }
-        echo $last;
         return $last;
     }
     function insertParam($parData, $itemId)
