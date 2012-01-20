@@ -43,7 +43,7 @@
     
         
 	<div id="logo">
-            <a  href="<?php echo base_url('main'); ?>"><image src="<?php echo base_url('images/logo.jpg'); ?>"/></a>
+            <a  href="<?php echo base_url('main'); ?>"><image src="<?php echo base_url('./application/views/images/newlogo.jpg'); ?>"/></a>
         </div>
         
         <div id="comixzone_reg">
