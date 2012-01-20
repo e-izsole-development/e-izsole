@@ -1,6 +1,6 @@
 <?php
 $lang['login'] = 'Login';
-$lang['sing up'] = 'Sing up';
+$lang['singup'] = 'Sing up';
 $lang['user'] = 'User:';
 $lang['pasword'] = 'Pasword:';
 $lang['find'] = 'Find';

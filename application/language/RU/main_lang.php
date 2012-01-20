@@ -1,6 +1,6 @@
 <?php
 $lang['login'] = "Вход";
-$lang['sing up'] = 'Регистрация';
+$lang['singup'] = 'Регистрация';
 $lang['user'] = 'Пользователь:';
 $lang['pasword'] = 'Пароль:';
 $lang['find'] = 'Поиск';

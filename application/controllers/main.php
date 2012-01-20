@@ -19,6 +19,7 @@ class main extends CI_Controller
     {
         $data = $this->prepareData();
         $data["items"] = $this->items_data->getAllShortInfo();
+        $this->load->view('fullMenu',$data);
         $this->load->view('main',$data);
     }
     
@@ -50,10 +51,12 @@ class main extends CI_Controller
         if($this->dataValidation->productIDValidation($id)){
             $data['item'] = $this->items_data->getItemFullInfo($id);
             $this->reports->insertViwedProduct($this->session->userdata('eizsoleuser'), $id);
+            $this->load->view('fullMenu',$data);
             $this->load->view('item',$data);
         }
         else{
             $data['errors']= "This product does not exist!";
+            $this->load->view('fullMenu',$data);
             $this->load->view('error',$data);
         }
     }
@@ -61,9 +64,10 @@ class main extends CI_Controller
     function myProductForSail(){
         $data = $this->prepareData();
         $this->load->model('reports');
-        $data['items']=$this->reports->findNotSeldProductByUserID($this->session->userdata('eizsoleuser'));   
+        $data['items']=$this->reports->findNotSeldProductByUserID($this->session->userdata('eizsoleuser'))->result();   
         $data['PageName']='E-izsole: My products';
-        $this->load->view('report',$data);
+        $this->load->view('registeredMenu',$data);
+        $this->load->view('main',$data);
     }
     
     function category($id)
@@ -71,6 +75,7 @@ class main extends CI_Controller
         $data = $this->prepareData();
         
         $data["items"] = $this->items_data->getItemsByCategory($id);
+        $this->load->view('fullMenu',$data);
         $this->load->view('main',$data);
     }
     
@@ -79,6 +84,7 @@ class main extends CI_Controller
         $data = $this->prepareData();
         
         if (!empty($_POST["parameters"])) $data["items"] = $this->items_data->getItemsForSearch($_POST["parameters"]);
+        $this->load->view('fullMenu',$data);
         $this->load->view('main',$data);
     }
     
@@ -108,14 +114,16 @@ class main extends CI_Controller
         if (isset($_POST))
             unset($_POST);
         $data["categories"] = $this->system_data->getCategories();
+        $this->load->view('registeredMenu',$data);
         $this->load->view("addItemForm", $data);
     }
     function lastTwenyViewed(){
         $data = $this->prepareData();
         $this->load->model('reports');
-        $data['items']=$this->reports->findLastViwedByUserID($this->session->userdata('eizsoleuser'));   
+        $data['items']=$this->reports->findLastViwedByUserID($this->session->userdata('eizsoleuser'))->result();   
         $data['PageName']='E-izsole: Last viewed';
-        $this->load->view('report',$data);
+        $this->load->view('registeredMenu',$data);
+        $this->load->view('main',$data);
     }
     
     function bidVal($id)
