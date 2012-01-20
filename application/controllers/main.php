@@ -46,7 +46,7 @@ class main extends CI_Controller
     {
         $this->session->unset_userdata('eizsoleuser');
         $this->session->unset_userdata('eizsoleusername');
-        $this->session->unset_userdata('language');
+        $this->session->set_userdata("language","LV");
         $this->index();
     }
     
