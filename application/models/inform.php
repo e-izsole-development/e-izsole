@@ -30,6 +30,8 @@ class Inform extends CI_Model
             '3' => '371%d@biteplus.lv'
         );
         $phone = $this->mail->getUserPhone($id);
+        var_dump($phone->mobile_operator);
+        var_dump($phone->phone_number);
         $to = sprintf($formats[$phone->mobile_operator],$phone->phone_number);
         $this->email->to($to);
         $this->email->subject($subject);

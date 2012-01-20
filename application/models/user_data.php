@@ -100,10 +100,11 @@ class User_data extends CI_Model
     function getMailPhone($id)
     {
         $this->db->from('dbo_users');
-        $this->db->select('mobile_phone','e_mail');
+        $this->db->select('phone_number','mobile_operator','e_mail');
         $this->db->where('id='.$id);
         $t = $this->db->get();
         $t = $t[0];
+        var_dump($t);
         return $t;
     }
 }

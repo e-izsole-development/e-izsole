@@ -107,10 +107,10 @@
                         <p id="formp">Mobile operator:</p>
                     </td>
                     <td>
-                        <select id="asd">
-                        <option value="1">LMT</option>
-                        <option value="2">Tele2</option>
-                        <option value="3">Bite</option>
+                        <select id="asd" name="mobile_operator">
+                        <option value="1" >LMT</option>
+                        <option value="2" >Tele2</option>
+                        <option value="3" >Bite</option>
                         </select>
                     </td>
                 </tr>

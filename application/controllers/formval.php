@@ -10,7 +10,8 @@ class Formval extends CI_controller
 	$this->load->library('form_validation');
         $this->load->model('user_data', 'users');
         $this->load->model('items_data', 'items');
-        $this->load->model('system_data', 'inform');
+        $this->load->model('system_data');
+        $this->load->model('inform');
         
         $config['upload_path'] = './application/views/images/Uploads/';
         $config['allowed_types'] = 'jpg';
@@ -51,20 +52,22 @@ class Formval extends CI_controller
 	}
 	else
 	{
+            var_dump($_POST);
             $cloned = $_POST;
             unset($cloned["repassword"]);
             $data["cloned"] = $cloned;
             $this->users->registerUser($cloned);
             //run verifications
-            if ($cloned['mobile_phone']!=null)
+            $id = $this->users->getUserId1($cloned["username"]);
+            if ($cloned['phone_number']!=null)
             {
                 $this->session->set_userdata('mobilevercode',$this->generateCode());
-                $this->inform->send2phone($cloned->id,'verification code',$this->session->userdata('mobilevercode'));
+                $this->inform->send2phone($id,'verification code',$this->session->userdata('mobilevercode'));
             }
             if ($cloned['e_mail']!=null)
             {
                 $this->session->set_userdata('emailvercode',$this->generateCode());
-                $this->inform->send2email($cloned->id,'verification code',$this->session->userdata('mobilevercode'));
+                $this->inform->send2email($id,'verification code',$this->session->userdata('emailvercode'));
             }
             $this->load->view("successReg", $data);
             
@@ -107,12 +110,12 @@ class Formval extends CI_controller
             if ($cloned['mobile_phone']!=$me->mobile_phone)
             {
                 $this->session->set_userdata('mobilevercode',$this->generateCode());
-                $this->inform->send2phone($cloned->id,'verification code',$this->session->userdata('mobilevercode'));
+                $this->inform->send2phone($cloned['id'],'verification code',$this->session->userdata('mobilevercode'));
             }
             if ($cloned['e_mail']!=$me->e_mail)
             {
                 $this->session->set_userdata('emailvercode',$this->generateCode());
-                $this->inform->send2email($cloned->id,'verification code',$this->session->userdata('mobilevercode'));
+                $this->inform->send2email($cloned['id'],'verification code',$this->session->userdata('mobilevercode'));
             }
             $this->load->view("successReg", $data);
 	}
