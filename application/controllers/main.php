@@ -83,7 +83,6 @@ class main extends CI_Controller
     function category($id)
     {        
         $data = $this->prepareData();
-        
         $data["items"] = $this->items_data->getItemsByCategory($id);
         $this->load->view('fullMenu',$data);
         $this->load->view('main',$data);
@@ -143,6 +142,20 @@ class main extends CI_Controller
         $this->load->view('main',$data);
     }
     
+    function admin(){
+        $data = $this->prepareData();
+        if($data['userType']=='a'){
+            $this->load->model('system_data');
+            $result=$this->system_data->getStatistics();
+            $data['usersCount']=$result['usersCount'];
+            $data['itemsCount']=$result['itemsCount'];
+            $this->load->view('admin',$data);
+        }
+        else{
+            $this->load->view('index.html');
+        }
+    }
+    
     function upadteLanguage(){
         $this->session->set_userdata("language",$_POST['languagechoise']);
         If($this->session->userdata("eizsolecurr")!=null){
@@ -164,7 +177,7 @@ class main extends CI_Controller
         $bid['winner'] = $bidder;
         if ($this->form_validation->run() == FALSE)
          {
-                    $data = $this->preparedata();
+                    $data = $this->prepareData();
                     $data['bidError'] = 'New bid is required and must be decimal!  (example: 5.00, 4.20, 3.12)';
                     $data['item'] = $this->items_data->getItemFullInfo($id);
                     $data['auction'] = true;
@@ -178,7 +191,7 @@ class main extends CI_Controller
             if ($newBid > $oldBid) 
             {
                 $this->items_data->setNewBid($bid);
-                $data = $this->preparedata();
+                $data = $this->prepareData();
                 $data['test'] = array($id, $newBid, $bidder);
                 $data['item'] = $this->items_data->getItemFullInfo($id);
                 $data['auction'] = true;

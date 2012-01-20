@@ -6,7 +6,7 @@ class Formval extends CI_controller
     {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
-
+        $this->load->model('user_data');
 	$this->load->library('form_validation');
         $this->load->model('user_data', 'users');
         $this->load->model('items_data', 'items');
@@ -45,7 +45,7 @@ class Formval extends CI_controller
         
         //$this->form_validation->set_message('greater_than[1]', 'You must accept user agreement and privacy policy');
         
-
+        $data=$this->prepareData();
 	if ($this->form_validation->run() == FALSE)
 	{
             $this->load->view('regForm');
@@ -73,6 +73,32 @@ class Formval extends CI_controller
 	}
 	
     }
+    function prepareData()
+    {
+        
+        $this->system_data->calculateCurrency();
+        if (!empty($_POST["currency"])) $this->session->set_userdata("eizsolecurr",$_POST["currency"]);
+        
+        $data["categories"] = $this->system_data->getCategories();
+        $data["languages"] = $this->system_data->getLanguages();
+              
+        $data["currency"] = $this->system_data->getCurrency();
+        $this->lang->load('main', $this->session->userdata("language"));
+        $data['login']=$this->lang->line('login');
+        $data['kategory']=$this->lang->line('kategory');
+        $data['menu']=$this->lang->line('menu');
+        
+        $currencyIndex = array();
+        foreach($data["currency"] as $oneOfCurrencies)
+        {
+            $currencyIndex[$oneOfCurrencies->id] = $oneOfCurrencies->Rate;
+        }
+        if ($this->session->userdata("eizsoleuser")!=null) $data["userType"] = $this->user_data->getUserType($this->session->userdata("eizsoleuser"));
+        else $data["userType"] = 'n';
+        if ($this->session->userdata('eizsoleuser')!=null) $data['verificationStatus'] = $this->user_data->getVerificationStatus($this->session->userdata('eizsoleuser'));
+        $data["currencyIndex"] = $currencyIndex;
+        return $data;
+    }
     
     function editVal()
     {
@@ -86,11 +112,10 @@ class Formval extends CI_controller
         //$this->form_validation->set_rules('termsAgreement', 'Terms and Agreement', 'greater_than[1]');
         
         //$this->form_validation->set_message('greater_than[1]', 'You must accept user agreement and privacy policy');
-        
+        $data=$this->prepareData();
 
 	if ($this->form_validation->run() == FALSE)
 	{
-            $data = array();
             $data['names'] = $this->users->getNames();
             $this->load->view('editProfile',$data);
 	}
@@ -131,7 +156,7 @@ class Formval extends CI_controller
         $this->form_validation->set_rules('price', 'Price', 'required|xss_clean');
         //$this->form_validation->set_rules('termsAgreement[]', 'Terms and Agreement', 'required');
         
-
+        $data=$this->prepareData();
 	if ($this->form_validation->run() == FALSE)
 	{
             $this->load->view('addItemForm', $data);
@@ -198,28 +223,31 @@ class Formval extends CI_controller
     
     function inputVerCode()
     {
-        $this->load->view('enterVerCode');
+        $data=$this->prepareData();
+        $this->load->view('enterVerCode',$data);
     }
     
     function checkEmailCode()
     {
+        $data=$this->prepareData();
         if ($_POST['code'] == $this->session->userdata('emailvercode'))
         {
             $s = $this->users->getVerificationStatus($this->session->userdata('eizsoleuser'));
             if ($s == 'p') $this->users->setVerificationStatus($this->session->userdata('eizsoleuser'),'a');
                 else $this->users->setVerificationStatus($this->session->userdata('eizsoleuser'),'e');
         }
-        $this->load->view('successReg');
+        $this->load->view('successReg',$data);
     }
     function checkPhoneCode()
     {
+        $data=$this->prepareData();
         if ($_POST['code'] == $this->session->userdata('mobilevercode')) 
         {
             $s = $this->users->getVerificationStatus($this->session->userdata('eizsoleuser'));
             if ($s == 'e') $this->users->setVerificationStatus($this->session->userdata('eizsoleuser'),'a');
                 else $this->users->setVerificationStatus($this->session->userdata('eizsoleuser'),'p');
         }
-        $this->load->view('successReg');
+        $this->load->view('successReg',$data);
     }
     //
     function generateCode()
@@ -228,6 +256,7 @@ class Formval extends CI_controller
     }
     function enterParameters()
     {
+        $data=$this->prepareData();
         $param = $_POST;
         $lastID = $this->items->getLastItemId();
         $arkeys = array_keys($param);
@@ -241,7 +270,7 @@ class Formval extends CI_controller
             $counter += 1;
             $this->items->insertParam($finalData, $lastID);
         }
-        $this->load->view('itemSuccess');
+        $this->load->view('itemSuccess',$data);
     }
 }
 ?>
