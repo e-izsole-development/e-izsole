@@ -1,13 +1,16 @@
 table tr td
 {
-    width: 200px;
+    width: 400px;
 }
 
 table tr td:first-child
 {
     text-align: right;
+    width: 200px;
 }
-tabke tr td input
+table tr td input
 {
     width: 180px;
+    display: inline;
 }
+

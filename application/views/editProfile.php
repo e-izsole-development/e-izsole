@@ -127,6 +127,10 @@
                     </td>
                     <td>
                         <p id="formp"><input name="phone_number" id="phone_number" value="<?php echo set_value('phone_number'); ?>" type="text"/></p>
+                        <p>
+                            (For LMT users it is an <a href="http://www.lmt.lv/lat/abonentiem/pakalpojumi/iszinu_pakalpojumi/sms_no_interneta/sms_no_interneta_identifikators">LMT ID</a>)
+                            Number(or ID) should be activated, if you want to subscribe for news, warnings, requests and so on... Usually it costs as one simple SMS. (you should pay only once)
+                        </p>
                     </td>
                 </tr>
                 <tr>
