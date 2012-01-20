@@ -167,6 +167,8 @@ class main extends CI_Controller
                     $data = $this->preparedata();
                     $data['bidError'] = 'New bid is required and must be decimal!  (example: 5.00, 4.20, 3.12)';
                     $data['item'] = $this->items_data->getItemFullInfo($id);
+                    $data['auction'] = true;
+                    $this->load->view('registeredMenu', $data);
                     $this->load->view('item',$data);
          }
         else
@@ -179,7 +181,9 @@ class main extends CI_Controller
                 $data = $this->preparedata();
                 $data['test'] = array($id, $newBid, $bidder);
                 $data['item'] = $this->items_data->getItemFullInfo($id);
+                $data['auction'] = true;
                 $data['success'] = '<script> alert("Your bid( '. $newBid . ' ) was successfully added")</script>';
+                $this->load->view('registeredMenu', $data);
                 $this->load->view('item',$data);
             }
             else 
@@ -188,6 +192,8 @@ class main extends CI_Controller
                 $data = $this->preparedata();
                 $data['bidError'] = 'New bid must be higher than old bid';
                 $data['item'] = $this->items_data->getItemFullInfo($id);
+                $data['auction']= true;
+                $this->load->view('registeredMenu', $data);
                 $this->load->view('item',$data);
             }
         }
