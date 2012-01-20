@@ -47,7 +47,7 @@
         <div id="top_bar_right">
             <ul>
             <li>
-                <form method="POST" action=<?php echo language_url(); ?> id="lang">
+                <form method="POST" action=<?php echo current_url(); ?> id="lang">
                     <select name="currency" onchange="document.forms['curr'].submit();">
                         <?php foreach ($languages as $language): ?>
                         <option value=<?php echo $language->id . " "; ?> <?php if ($language->title == $this->session->userdata("language")) { ?>selected='selected'<?php }?> > <?php echo $language->title;?> </option>

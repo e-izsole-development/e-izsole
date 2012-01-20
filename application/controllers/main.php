@@ -11,13 +11,21 @@ class main extends CI_Controller
         $this->load->model('system_data');
         $this->load->model('user_data');
         $this->load->helper('url');
-        if ($this->session->userdata("eizsolecurr")==null) $this->session->set_userdata("eizsolecurr","LVL");
+        if ($this->session->userdata("eizsolecurr")==null)
+        {
+            $this->session->set_userdata("eizsolecurr","LVL");
+        }
+        if ($this->session->userdata("language")==null)
+        {
+            $this->session->set_userdata("language","LV");
+        }
     }
     
     function index()
     {
         $data = $this->prepareData();
         $data["items"] = $this->items_data->getAllShortInfo();
+        
         $this->load->view('fullMenu',$data);
         $this->load->view('main',$data);
     }
@@ -29,6 +37,7 @@ class main extends CI_Controller
         $id = $this->user_data->getUserId($_POST["login"],$_POST["password"]);
         $this->session->set_userdata("eizsoleuser",$id);
         $this->session->set_userdata("language",$this->user_data->getUserLanguage($id));
+        $this->lang->load('main', $this->session->userdata("language"));
         if ($id!=null) $this->session->set_userdata("eizsoleusername",$_POST['login']);
         $this->index();
     }
@@ -37,6 +46,7 @@ class main extends CI_Controller
     {
         $this->session->unset_userdata('eizsoleuser');
         $this->session->unset_userdata('eizsoleusername');
+        $this->session->unset_userdata('language');
         $this->index();
     }
     
@@ -95,6 +105,10 @@ class main extends CI_Controller
         $data = array();
         $data["categories"] = $this->system_data->getCategories();
         $data["languages"] = $this->system_data->getLanguages();
+        $this->lang->load('main', $this->session->userdata("language"));
+        $data['login']=$this->lang->line('login');
+        $data['kategory']=$this->lang->line('kategory');
+        $data['menu']=$this->lang->line('menu');
               
         $data["currency"] = $this->system_data->getCurrency();
         
