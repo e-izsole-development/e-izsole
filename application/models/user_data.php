@@ -126,5 +126,38 @@ class User_data extends CI_Model
         $this->db->where('id',$id);
         $this->db->update('dbo_users',array('verified' => $s));
     }
+    
+    function getAllIdForMail()
+    {
+        $this->db->select("id FROM dbo_users WHERE (verified = 'a') OR (verified = 'e')");
+        return $this->db->get()->result();
+    }
+    
+    function getAllIdForPhone()
+    {
+        $this->db->select("id FROM dbo_users WHERE (verified = 'a') OR (verified = 'p')");
+        return $this->db->get()->result();
+    }
+    
+    function getUsersToInform($params)
+    {
+        
+        $this->db->select("id, query, verified FROM dbo_users WHERE query <> '' AND (verified = 'a' OR verified = 'p' OR verified = 'e')");
+        
+        $t = $this->db->get()->result();
+        $forres = array();
+        foreach ($t as $tt)
+        {
+            foreach ($params as $p)
+            {
+                if (strpos($p, $tt->query) !== false)
+                {
+                    $elem = array('id' => $tt->id, 'ver' => $tt->verified);
+                    $forres[] = $elem;
+                }
+            }
+        }
+        return $forres;
+    }
 }
 ?>

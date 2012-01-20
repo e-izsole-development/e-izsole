@@ -232,3 +232,14 @@ p#error
 {
     color: red;
 }
+
+#messageBox input
+{
+    width: 450px;
+    height: 80px;
+}
+
+#subjectBox input
+{
+    margin: 10px;
+}

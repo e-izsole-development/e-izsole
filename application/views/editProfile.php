@@ -154,6 +154,14 @@
                         <p id="formp"><input name="e_mail" id="e_mail" value="<?php echo set_value('e_mail'); ?>" type="text"/></p>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <p id="formp">Information about what do you want to receive:</p>
+                    </td>
+                    <td>
+                        <p id="formp"><input name="query" id="query" value="<?php echo set_value('query'); ?>" type="text"/></p>
+                    </td>
+                </tr>
             </table>
             <?php echo form_fieldset_close(); echo form_fieldset();?>
             <table>

@@ -12,17 +12,13 @@ class main extends CI_Controller
         $this->load->model('user_data');
         $this->load->helper('url');
         $this->load->library('form_validation');
-        if ($this->session->userdata("eizsolecurr")==null)
+     if ($this->session->userdata("eizsolecurr")==null)
         {
             $this->session->set_userdata("eizsolecurr","LVL");
         }
         if ($this->session->userdata("language")==null)
         {
            $this->session->set_userdata("language","LV");
-        }
-        if ($this->session->userdata("url")==null)
-        {
-           $this->session->set_userdata("url",base_url('main'));
         }
     }
     
@@ -50,8 +46,7 @@ class main extends CI_Controller
     {
         $this->session->unset_userdata('eizsoleuser');
         $this->session->unset_userdata('eizsoleusername');
-        $this->session->set_userdata("language","LV");
-        $this->session->set_userdata('url',base_url('main'));
+        $this->session->unset_userdata('language');
         $this->index();
     }
     
@@ -66,17 +61,14 @@ class main extends CI_Controller
         if($this->dataValidation->productIDValidation($id)){
             $data['item'] = $this->items_data->getItemFullInfo($id);
             $this->reports->insertViwedProduct($this->session->userdata('eizsoleuser'), $id);
-            $this->session->set_userdata("url",base_url('main/item/'.$id));
             $this->load->view('fullMenu',$data);
             $this->load->view('item',$data);
         }
         else{
             $data['errors']= "This product does not exist!";
-            $this->session->set_userdata("url",base_url('error'));
             $this->load->view('fullMenu',$data);
             $this->load->view('error',$data);
         }
-        
     }
    
     function myProductForSail(){
@@ -84,7 +76,6 @@ class main extends CI_Controller
         $this->load->model('reports');
         $data['items']=$this->reports->findNotSeldProductByUserID($this->session->userdata('eizsoleuser'))->result();   
         $data['PageName']='E-izsole: My products';
-        $this->session->set_userdata("url",base_url('main/myProductForSail'));
         $this->load->view('registeredMenu',$data);
         $this->load->view('main',$data);
     }
@@ -92,7 +83,7 @@ class main extends CI_Controller
     function category($id)
     {        
         $data = $this->prepareData();
-        $this->session->set_userdata("url",base_url('main/category/'.$id));
+        
         $data["items"] = $this->items_data->getItemsByCategory($id);
         $this->load->view('fullMenu',$data);
         $this->load->view('main',$data);
@@ -101,6 +92,7 @@ class main extends CI_Controller
     function search()
     {
         $data = $this->prepareData();
+        
         if (!empty($_POST["parameters"])) $data["items"] = $this->items_data->getItemsForSearch($_POST["parameters"]);
         $this->load->view('fullMenu',$data);
         $this->load->view('main',$data);
@@ -138,7 +130,7 @@ class main extends CI_Controller
             unset($_POST);
         $data= $this->preparedata();
         $data["categories"] = $this->system_data->getCategories();
-        $this->session->set_userdata("url",base_url('main/newItem/'));
+        
         $this->load->view('registeredMenu',$data);
         $this->load->view("addItemForm", $data);
     }
@@ -147,18 +139,17 @@ class main extends CI_Controller
         $this->load->model('reports');
         $data['items']=$this->reports->findLastViwedByUserID($this->session->userdata('eizsoleuser'))->result();   
         $data['PageName']='E-izsole: Last viewed';
-        $this->session->set_userdata("url",base_url('main/lastTwenyViewed/'));
         $this->load->view('registeredMenu',$data);
         $this->load->view('main',$data);
     }
     
-    function upadteLanguage(){
-        $this->session->set_userdata("language",$_POST['languagechoise']);
+    function upadteLanguage($lang){
+        $this->session->set_userdata("language",$lang);
         If($this->session->userdata("eizsolecurr")!=null){
             $this->load->model('system_data');
-            $this->system_data->updateLanguage($this->session->userdata("eizsolecurr"),$this->session->userdata("language"));
+            $this->system_data->updateLanguage($this->session->userdata("eizsolecurr"));
         }
-        redirect($this->session->userdata("url"));
+        $this->index();
     }
     
     function bidVal($id)

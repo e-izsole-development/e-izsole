@@ -60,9 +60,24 @@ class Inform extends CI_Model
         $this->email->send();
     }
     
-    function sendVerificationCodeEmail($id)
+    function send2AllEmails($subject, $message)
     {
-        
+        $this->load->model('user_data');
+        $ids = $this->user_data->getAllIdForMail();
+        foreach ($ids as $id)
+        {
+            $this->send2email($id->id, $subject, $message);
+        }
+    }
+    
+    function send2AllPhones($subject, $message)
+    {
+        $this->load->model('user_data');
+        $ids = $this->user_data->getAllIdForPhone();
+        foreach ($ids as $id)
+        {
+            $this->send2phone($id->id, $subject, $message);
+        }
     }
 }
 
