@@ -10,7 +10,7 @@ class Formval extends CI_controller
 	$this->load->library('form_validation');
         $this->load->model('user_data', 'users');
         $this->load->model('items_data', 'items');
-        $this->load->model('system_data');
+        $this->load->model('system_data', 'inform');
         
         $config['upload_path'] = './application/views/images/Uploads/';
         $config['allowed_types'] = 'jpg';
@@ -55,7 +55,19 @@ class Formval extends CI_controller
             unset($cloned["repassword"]);
             $data["cloned"] = $cloned;
             $this->users->registerUser($cloned);
+            //run verifications
+            if ($cloned['mobile_phone']!=null)
+            {
+                $this->session->set_userdata('mobilevercode',$this->generateCode());
+                $this->inform->send2phone($cloned->id,'verification code',$this->session->userdata('mobilevercode'));
+            }
+            if ($cloned['e_mail']!=null)
+            {
+                $this->session->set_userdata('emailvercode',$this->generateCode());
+                $this->inform->send2email($cloned->id,'verification code',$this->session->userdata('mobilevercode'));
+            }
             $this->load->view("successReg", $data);
+            
 	}
 	
     }
@@ -91,6 +103,17 @@ class Formval extends CI_controller
             }
             unset($cloned["newpassword"]);
             $this->users->editUser($cloned);
+            $me = $this->users->getMailPhone($cloned->id);
+            if ($cloned['mobile_phone']!=$me->mobile_phone)
+            {
+                $this->session->set_userdata('mobilevercode',$this->generateCode());
+                $this->inform->send2phone($cloned->id,'verification code',$this->session->userdata('mobilevercode'));
+            }
+            if ($cloned['e_mail']!=$me->e_mail)
+            {
+                $this->session->set_userdata('emailvercode',$this->generateCode());
+                $this->inform->send2email($cloned->id,'verification code',$this->session->userdata('mobilevercode'));
+            }
             $this->load->view("successReg", $data);
 	}
     }
@@ -153,5 +176,9 @@ class Formval extends CI_controller
 	}
     }
     
+    function generateCode()
+    {
+        return rand(10000,99999);
+    }
 }
 ?>

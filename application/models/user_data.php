@@ -93,7 +93,18 @@ class User_data extends CI_Model
         $this->db->join('dbo_languages', 'dbo_users.language=dbo_languages.id');
         $this->db->where('id', $id);
         $this->db->select('title');
-        return $this->db->get()->result();
+        $t = $this->db->get()->result();
+        return $t[0];
+    }
+    
+    function getMailPhone($id)
+    {
+        $this->db->from('dbo_users');
+        $this->db->select('mobile_phone','e_mail');
+        $this->db->where('id='.$id);
+        $t = $this->db->get();
+        $t = $t[0];
+        return $t;
     }
 }
 ?>
