@@ -94,7 +94,8 @@ class main extends CI_Controller
         
         $data = array();
         $data["categories"] = $this->system_data->getCategories();
-        
+        $data["languages"] = $this->system_data->getLanguages();
+              
         $data["currency"] = $this->system_data->getCurrency();
         
         $currencyIndex = array();

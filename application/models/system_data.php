@@ -28,6 +28,11 @@ class system_data extends CI_Model
         return $this->db->get('dbo_currency')->result();
     }
     
+    function getLanguages()
+    {
+        return $this->db->get('dbo_languages')->result();
+    }
+    
     function calculateCurrency()
     {
         $xml = file_get_contents('http://www.bank.lv/vk/xml.xml');

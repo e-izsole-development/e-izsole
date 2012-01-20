@@ -91,9 +91,13 @@ class User_data extends CI_Model
     function getUserLanguage($id){
         $this->db->from('dbo_users');
         $this->db->join('dbo_languages', 'dbo_users.language=dbo_languages.id');
-        $this->db->where('id', $id);
-        $this->db->select('title');
-        return $this->db->get()->result();
+        $this->db->where('dbo_users.id', $id);
+        $this->db->select('dbo_languages.title');
+        $query = $this->db->get();
+        foreach ($query->result() as $row){
+            $language = $row->title;
+        }
+        return $language;
     }
 }
 ?>
