@@ -102,9 +102,7 @@ class Formval extends CI_controller
 	$this->form_validation->set_rules('short_description', 'Short description', 'required|xss_clean');
 	$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
         $this->form_validation->set_rules('price', 'Price', 'required|xss_clean');
-        //$this->form_validation->set_rules('termsAgreement[]', 'Terms and Agreement', 'required');
-        
-
+    
 	if ($this->form_validation->run() == FALSE)
 	{
             $this->load->view('addItemForm', $data);
@@ -117,8 +115,10 @@ class Formval extends CI_controller
 
 			
 		}
+                
 		else {
                     
+                    echo "<p>shit</p>";
                     $tempo = $this->upload->data();
                     $cloned['photo']= $tempo['raw_name'];
                     $configi['image_library'] = 'gd2';
@@ -137,21 +137,47 @@ class Formval extends CI_controller
                     $cloned['price']=$_POST['price'];
                     $cloned['seller_id'] = $_POST['seller_ID'];
                     $cloned['category'] = $_POST['category'];
-                    
                     if (isset($_POST['auction']))
                         $cloned['auction'] = $_POST['auction'];
                         else $cloned['auction'] = 0;
-
+                    
+                    
                     $clonedToDesc['description'] = $_POST['description'];
                     $clonedToDesc['short_description'] = $_POST['short_description'];
 
                     $this->items->addItemToDb($cloned, $clonedToDesc);
                     $data['upload_data'] = $this->upload->data();
+                    $paramList = $this->items->getParametersByCatId($cloned['category']);
+                    if (!(isset($paramList)))
+                    {    
                     $this->load->view("itemSuccess", $cloned);
+                    } 
+                    else
+                    {
+                    $data['parameters'] = $paramList;
+                    $this->load->view('enterParam', $data);
+                    }
                 
-            
+                }
 	}
+    function enterParameters()
+    {
+        $param = $_POST;
+        $lastID = $this->items->getLastItemId();
+        $arkeys = array_keys($param);
+        $counter=0;
+        foreach ($param as $one)
+        {
+            
+            $finalData['parameter'] = $arkeys[$counter];
+            
+            $finalData['value'] = $param[$arkeys[$counter]];
+            $counter += 1;
+            $this->items->insertParam($finalData, $lastID);
+        }
+        $this->load->view('itemSuccess');
     }
+    
     
 }
 ?>

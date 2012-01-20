@@ -107,10 +107,10 @@
                         <p id="formp">Mobile operator:</p>
                     </td>
                     <td>
-                        <select id="asd">
-                        <option value="1">LMT</option>
-                        <option value="2">Tele2</option>
-                        <option value="3">Bite</option>
+                        <select id="asd" name="mobile_operator">
+                        <option value="1" name="mobile_operator">LMT</option>
+                        <option value="2" name="mobile_operator">Tele2</option>
+                        <option value="3" name="mobile_operator">Bite</option>
                         </select>
                     </td>
                 </tr>
@@ -160,7 +160,7 @@
             <p id="policy">I have read and accepted the<a href="">User Agreement</a>
                 and <a href="">Privacy Policy</a>
             
-            <p><input type="submit" value="Sign up"> </p>
+            <p><input type="submit" value="Sign up"/> </p>
             
         </form>
         

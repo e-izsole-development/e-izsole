@@ -5,7 +5,7 @@
 	<title>E-izsole: Add New Item for Sale</title>
         <link REL=StyleSheet HREF= <?php echo base_url('application/views/main.css');?> />
 <body>
-    
+<?php //var_dump(validation_errors()); ?>
 <?php error_reporting(0); ?>
 
     <div id="whole_page">
@@ -69,6 +69,7 @@
 	
         
         <div id="comixzone_reg">
+     
             <?php echo validation_errors();?>
             <?php echo $error;?>
             <?php echo form_open_multipart('formval/itemVal');?>
@@ -86,7 +87,7 @@
            <p id="formp"><input name="userfile" id="photo" size="30" type="file"/></p>
             
             
-            <p id="formp">Auction (check, if yes): <input name="auction" id="auction" value="<?php echo set_value('auction'); ?>" type="checkbox"/></p>
+            <p id="formp">Auction (check, if yes): <input name="auction" id="auction" value="1" type="checkbox"/></p>
             <p id="formp">Price*:</p>
             <?php echo form_error('price'); ?>
             <p id="formp"><input name="price" id="price" size="30" value="<?php echo set_value('price'); ?>" type="text"/></p>
@@ -98,7 +99,8 @@
             </select>
             <input name="seller_ID" value="<?php echo $this->session->userdata('eizsoleuser') ?>" type="hidden"/>
             <br/><br/>
-            <input type="checkbox" id="termsAgreement"/>
+            <?php echo $error;?>
+            <input type="checkbox" value ="1" id="termsAgreement"/>
             <p id="policy">I have read and accepted the<a href="">User Agreement</a>
                 and <a href="">Privacy Policy</a>
             
