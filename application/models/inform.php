@@ -24,10 +24,10 @@ class Inform extends CI_Model
         
         
         $formats = array(
-            '1' => '%d@sms.lmt.lv',
-            '2' => '371%d@sms.tele2.lv',
-            '4' => '371%d@bifri.lv',
-            '3' => '371%d@biteplus.lv'
+            '1' => '%s@sms.lmt.lv',
+            '2' => '371%s@sms.tele2.lv',
+            '4' => '371%s@bifri.lv',
+            '3' => '371%s@biteplus.lv'
         );
         $phone = $this->mail->getUserPhone($id);
         var_dump($phone->mobile_operator);
