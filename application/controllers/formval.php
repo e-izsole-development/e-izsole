@@ -180,6 +180,11 @@ class Formval extends CI_controller
 	}
     }
     
+    function inputVerCode()
+    {
+        $this->load->view('enterVerCode');
+    }
+    
     function generateCode()
     {
         return rand(10000,99999);
