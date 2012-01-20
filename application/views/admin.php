@@ -26,7 +26,7 @@
                             <option selected="selected" value=<?php echo current_url(); ?>>Profile</option>
                             <option value=<?php echo base_url('user/editUser'); ?>>Edit my profile</option>
                             <option value=<?php echo base_url('main/newItem'); ?>>Add Product</option>
-                            <?php var_dump($userType); if ($userType =='a') { ?>
+                            <?php  if ($userType =='a') { ?>
                             <option value=<?php echo base_url('admin'); ?>>Admin</option>
                             <?php }?>
                             <option value=<?php echo base_url(); ?>>Last Seen</option>
