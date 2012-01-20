@@ -1,25 +1,26 @@
 <?php
-$lang['login'] = "Lielagoties";
-$lang['singup'] = 'Reģistrēties';
-$lang['user'] = 'Lietotājs:';
-$lang['pasword'] = 'Parole:';
-$lang['find'] = 'Atrast';
+$lang['login']=array('login'=>'Lielagoties',
+                    'singup' => 'Reģistrēties',
+                    'user' => 'Lietotājs:',
+                    'pasword' => 'Parole:',
+                    'find' => 'Atrast');
+
 //Kategory
-$lang['all'] = 'Visas';
-$lang['jewerly'] = 'bižutērija';
-$lang['phones'] = 'telefoni';
-$lang['cars'] = 'mašīnas';
-$lang['electronics'] = 'elektronika';
-$lang['toys'] = 'rotaļlietas';
-$lang['books'] = 'grāmatas';
-$lang['clothes'] = 'apģerbi';
-$lang['art'] = 'māksla';
+$lang['kategory']=array('all' => 'Visas',
+                        'jewerly' => 'bižutērija',
+                        'phones' => 'telefoni',
+                        'cars' => 'mašīnas',
+                        'electronics' => 'elektronika',
+                        'toys' => 'rotaļlietas',
+                        'books' => 'grāmatas',
+                        'clothes' => 'apģerbi',
+                        'art' => 'māksla');
 //Menu
-$lang['profile'] = 'Profailis';
-$lang['editmyprofile'] = 'Labot lietotāju dati';
-$lang['addproduct'] = 'Pievienot preci';
-$lang['admin'] = 'Administrators';
-$lang['myproducts'] = 'Mani produkti';
-$lang['lastviewed'] = 'Pedejie apskatītie';
-$lang['logout'] = 'Iziet';
+$lang['menu']=array('profile' => 'Profailis',
+                    'editmyprofile' => 'Labot lietotāju dati',
+                    'addproduct' => 'Pievienot preci',
+                    'admin' => 'Administrators',
+                    'myproducts' => 'Mani produkti',
+                    'lastviewed' => 'Pedejie apskatītie',
+                    'logout' => 'Iziet');
 ?>
