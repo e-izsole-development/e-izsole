@@ -107,6 +107,10 @@ class main extends CI_Controller
         $data["languages"] = $this->system_data->getLanguages();
               
         $data["currency"] = $this->system_data->getCurrency();
+        $this->lang->load('main', $this->session->userdata("language"));
+        $data['login']=$this->lang->line('login');
+        $data['kategory']=$this->lang->line('kategory');
+        $data['menu']=$this->lang->line('menu');
         
         $currencyIndex = array();
         foreach($data["currency"] as $oneOfCurrencies)
