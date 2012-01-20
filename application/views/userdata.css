@@ -1,6 +1,6 @@
 table tr td
 {
-    width: 400px;
+    width: 210px;
 }
 
 table tr td:first-child
@@ -14,3 +14,8 @@ table tr td input
     display: inline;
 }
 
+table
+{
+    display:inline;
+    float:left;
+}
