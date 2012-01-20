@@ -116,7 +116,7 @@ class Formval extends CI_controller
             if ($emailChanged)
             {
                 $this->session->set_userdata('emailvercode',$this->generateCode());
-                $this->inform->send2email($this->session->userdata("eizsoleuser"),'verification code',$this->session->userdata('mobilevercode'));
+                $this->inform->send2email($this->session->userdata("eizsoleuser"),'verification code',$this->session->userdata('emailvercode'));
             }
             $this->load->view("successReg", $data);
 	}
@@ -183,6 +183,13 @@ class Formval extends CI_controller
     function inputVerCode()
     {
         $this->load->view('enterVerCode');
+    }
+    
+    function checkEmailCode()
+    {
+        var_dump($this->session->userdata('emailvercode'));
+        var_dump($_POST['code']);
+        if ($_POST['code'] == $this->session->userdata('emailvercode')) echo 'good'; else echo 'bad';
     }
     
     function generateCode()
