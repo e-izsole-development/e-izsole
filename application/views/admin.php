@@ -45,15 +45,15 @@
         </div>
         <div id="top_bar_right">
             <ul>
-            <li>
-                <form method="POST" action=<?php echo current_url(); ?> id="lang">
+                <li>
+                 <form method="POST" action=<?php echo current_url(); ?> id="lang">
                     <select name="language" onchange="document.forms['lang'].submit();">
                         <option value="1">LV</option>
                         <option value="2">EN</option>
                         <option value="3">RU</option>
-                    </select>
+                   </select>
                 </form>
-            </li>
+                </li>
             </ul>
         </div>
         <div id="clear">

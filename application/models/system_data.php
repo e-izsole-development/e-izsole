@@ -36,9 +36,9 @@ class system_data extends CI_Model
     function getLanguageID($language)
     {
         $this->db->where('dbo_languages.title',$language);
-        $this->db->get('dbo_languages')->result();
-        foreach ($query->result() as $row){
-            $language = $row->id;
+        $query=$this->db->get('dbo_languages')->result();
+        foreach ($query as $row){
+            $languageID = $row->id;
         }
         return $languageID;
     }

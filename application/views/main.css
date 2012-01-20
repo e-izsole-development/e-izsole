@@ -7,6 +7,21 @@ body
     height: 100%;  
     width: 100%;
 }
+body a
+{
+    color:black;
+    text-decoration: none;
+}
+body a:visited
+{
+    color: #63070d;
+    text-decoration: none;
+}
+body a:hover
+{
+    color: #e0dfe2;
+    text-decoration: underline;
+}
 
 #LoginDiv
 {
@@ -29,7 +44,7 @@ body
     padding: 0px;
     width: 100%;
     display: block;
-    background: grey; 
+    background-image: url("./images/topbar.jpg"); 
 }
 
 #top_bar_left
@@ -117,10 +132,12 @@ body
     margin-left: 15%;
     margin-right: 180px;
     border-style: dotted;
-    border-width: 4px;
+    border-width: 2px;
     border-color: lightgray;
-    background-image:  url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");
-    background-position: -350px -10px;
+    /*background-image:  url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");*/
+    background-image: url("./images/test2.jpg");
+    /*background-position: -350px -10px;*/ 
+    border-radius: 5px;
 }
 
 
@@ -169,7 +186,7 @@ body
     border-style: dotted;
     border-width: 4px;
     border-color: lightgray;
-    background-image:  url("http://mi9.com/uploads/female-celebrities/4686/lin-ketong-cute-girl-wallpaper_1600x1068_84127.jpg");
+    background-image:  url("./images/test.jpg");
     background-position: -350px -10px;
   
 }
